@@ -30,6 +30,7 @@ All simulations and plots referenced in the paper can be reproduced using the sc
 ## Repository Structure
 The following paths are relative to the repository root:
 
+```markdown
 gbayesdesign/
 ├── src/
 │ └── gbayesdesign/ # Core Python package (GPU-accelerated Bayesian design methods)
@@ -51,7 +52,7 @@ gbayesdesign/
 ├── pyproject.toml # Build system configuration
 ├── setup.cfg # Package metadata and dependencies
 └── LICENSE.md # MIT License
-
+```
 ---
 
 ## Environment Setup (Narval / Compute Canada)

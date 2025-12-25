@@ -1,4 +1,4 @@
-```markdown
+
 # gbayesdesign  
 **Quickstart & Reproducibility Guide (Narval / Compute Canada)**
 
@@ -30,24 +30,27 @@ All simulations and plots referenced in the paper can be reproduced using the sc
 ## Repository Structure
 The following paths are relative to the repository root:
 
-```
-
-.
-├── src/                     # gbayesdesign package source
-├── examples/                # Reproducibility materials for Figure 2
-│   ├── input/               # Input design grids (CSV)
-│   ├── results/
-│   │   ├── sub/             # Per-job GPU outputs (SLURM jobs)
-│   │   └── *.pdf            # Final plots
-│   ├── powerz_example_true.py
-│   ├── run_powerz_true.sh
-│   ├── combine.py
-│   └── plot_fig2.py
-├── pyproject.toml
-├── setup.cfg
-└── LICENSE.md
-
-````
+gbayesdesign/
+├── src/
+│ └── gbayesdesign/ # Core Python package (GPU-accelerated Bayesian design methods)
+│
+├── examples/ # Reproducibility materials for Figure 2
+│ ├── input/ # Input design grids (CSV files)
+│ │ ├── default_table_none_xall_t.csv
+│ │ └── default_table_weak_xall_t.csv
+│ │
+│ ├── results/
+│ │ ├── sub/ # Per-job outputs from GPU / SLURM runs
+│ │ └── *.pdf # Final combined plots (e.g., Figure 2)
+│ │
+│ ├── powerz_example_true.py # Main GPU simulation & power calculation script
+│ ├── run_powerz_true.sh # SLURM submission script for Narval GPU jobs
+│ ├── combine.py # Merges per-job CSV outputs into combined result tables
+│ └── plot_fig2.py # Generates Figure 2 from combined results
+│
+├── pyproject.toml # Build system configuration
+├── setup.cfg # Package metadata and dependencies
+└── LICENSE.md # MIT License
 
 ---
 

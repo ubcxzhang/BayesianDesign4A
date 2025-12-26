@@ -56,6 +56,13 @@ gbayesdesign/
 
 ---
 
+## Citation / Usage
+
+This code is provided to support reproducibility of results reported in the associated manuscript.
+Please cite the paper when using or adapting this implementation.
+
+---
+
 ## Software Installation and Quick Start
 ---
 
@@ -192,12 +199,6 @@ results/grid_power_vs_r_2x2_true_4.pdf
   * `--test_iteration (-T)` → batch index
 * `plot_fig2.py` assumes combined CSVs already exist (run `combine.py` first).
 
----
-
-## Citation / Usage
-
-This code is provided to support reproducibility of results reported in the associated manuscript.
-Please cite the paper when using or adapting this implementation.
 
 ```
 Bayesian Adaptive Design for Clinical Trials with Potential Subgroup Effects, 2026

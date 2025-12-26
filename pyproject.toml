@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gbayesdesign"
+authors = [
+    { name = "Belaid Moa" },
+    { name = "Shelley Gao" }
+]
+version = "0.0.1.dev1"

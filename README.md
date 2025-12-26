@@ -5,9 +5,9 @@
 ---
 
 ## Overview
-This repository contains the full `gbayesdesign` codebase and reproducibility materials used to generate **Figure 2** in the accompanying journal paper draft.
+This repository contains the full `gbayesdesign` codebase and reproducibility materials used to generate **Figure 2** in the accompanying journal paper "Bayesian Adaptive Design for Clinical Trials with Potential Subgroup Effects".
 
-The code implements **GPU-accelerated Bayesian power calculations** for high-frequency stock-trading experimental designs.  
+The code implements **GPU-accelerated Bayesian power calculations** for Bayesian Adaptive Design for Clinical Trials Designs.  
 All simulations and plots referenced in the paper can be reproduced using the scripts under `examples/`.
 
 ---
@@ -53,7 +53,16 @@ gbayesdesign/
 ├── setup.cfg # Package metadata and dependencies
 └── LICENSE.md # MIT License
 ```
+
 ---
+
+## Software Installation and Quick Start
+---
+
+## Reproducing Results from the Paper
+---
+
+
 
 ## Environment Setup (Narval / Compute Canada)
 
@@ -191,4 +200,5 @@ This code is provided to support reproducibility of results reported in the asso
 Please cite the paper when using or adapting this implementation.
 
 ```
+Bayesian Adaptive Design for Clinical Trials with Potential Subgroup Effects, 2026
 ```

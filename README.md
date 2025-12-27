@@ -39,7 +39,7 @@ gbayesdesign/
 │ ├──mvn.html
 │ ├──powerZ.html
 │ └──rndgenerator.html
-│ │
+│ 
 ├── src/
 │ └── gbayesdesign/ # Core Python package (GPU-accelerated Bayesian design methods)
 │ │ ├── rndgenerator.py # Gets the state of the random number generator for the current device.
@@ -61,6 +61,10 @@ gbayesdesign/
 │ ├── run_powerz_true.sh # SLURM submission script for Narval GPU jobs
 │ ├── combine.py # Merges per-job CSV outputs into combined result tables
 │ └── plot_fig2.py # Generates Figure 2 from combined results
+│
+├── tests/
+│ ├── test_BayeSSampler.py/ # Test file for BayesSampeler class module
+│ └── test_mvn.py # Test file for mvn classmodule
 │
 ├── pyproject.toml # Build system configuration
 ├── setup.cfg # Package metadata and dependencies
@@ -113,6 +117,12 @@ Xuekui Zhang, Qianyun Zhao, Cong Chen, Belaid Moa, and Shelley Gao. Bayesian Ada
     pip install --no-index pandas matplotlib
     ```
 
+5. (Optional) Run test files to check the functionality
+
+    ```
+    python test_BayesSampler.py
+    python test_mvn.py
+    ```
 ---
 
 ## Reproducing Results from the Paper 

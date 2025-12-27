@@ -32,6 +32,14 @@ The following paths are relative to the repository root:
 
 ```markdown
 gbayesdesign/
+├── docs/ # html explainary documents for the source files
+│ ├──BayesSampler.html
+│ ├──Optimizer.html
+│ ├──index.html
+│ ├──mvn.html
+│ ├──powerZ.html
+│ └──rndgenerator.html
+│ │
 ├── src/
 │ └── gbayesdesign/ # Core Python package (GPU-accelerated Bayesian design methods)
 │ │ ├── rndgenerator.py # Gets the state of the random number generator for the current device.

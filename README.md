@@ -48,7 +48,6 @@ gbayesdesign/
 │ │ ├── Optimizer.py # Generic Optimizer object, Used to standardize derivative-free constrained nonlinear multivariate solvers from different packages
 │ │ └── powerZ.py # Returns a computed power based on the constraint function alpha(Z,Xt)
 │ │
-│ │
 ├── examples/ # Reproducibility materials for Figure 2
 │ ├── input/ # Input design grids (CSV files)
 │ │ ├── default_table_none_xall_t.csv

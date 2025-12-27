@@ -12,8 +12,7 @@ Jun 1992, Vol. 1, No. 2, pp. 141-149
 
 import cupy as cp
 from cupyx.scipy import special
-# import rndgenerator    # for model checking
-from . import rndgenerator # for normal code
+from . import rndgenerator
 
 
 def van_der_corput(n: int, base=2, start_index=0, scramble=False, seed=None):
@@ -106,7 +105,6 @@ def cdf1D(x,mean=0.0,std=1):
     std : 1
         The standard deviation of the normal distribution
     """
-    # print("check cdf1D:",(x-mean).shape, special.erf((x-mean)*cp.reciprocal(std)/cp.sqrt(2.)).shape)
     return 0.5*(1. + special.erf((x-mean)*cp.reciprocal(std)/cp.sqrt(2.)))
 
 @cp.fuse
@@ -127,8 +125,6 @@ def icdf1D(x,mean=0.0,std=1.):
 
 def cdf2DLattice(sigma=cp.eye(2),ub=cp.array([+cp.inf,+cp.inf]), 
         Nmax=50000, lattice_points=None):
-        #random_seed=101,
-        # g=None, alpha=2.7, errmin=0.000001, 
     """
     Returns a multivariate MVN CDF at a single point
     
@@ -165,16 +161,13 @@ def cdf2DLattice(sigma=cp.eye(2),ub=cp.array([+cp.inf,+cp.inf]),
     C[0,0] = cp.sqrt(fsigma[0, 0]); C[1,0]=fsigma[1, 0]/cp.sqrt(fsigma[0, 0]);
     C[1,1] = cp.sqrt(fsigma[1, 1]-fsigma[1, 0]**2/fsigma[0, 0])
     e0 = 1.
-    # print(C)
     if cp.isfinite(b[0]):
         e0 = cdf1D(b[0]/C[0,0])
     
     y0vec = icdf1D(lattice_points*e0)
     e1vec = cp.ones(Nmax)
-    # print((b[1]-C[1,0]*y0vec)/C[1,1])
     if cp.isfinite(b[1]):
         e1vec = cdf1D((b[1]-C[1,0]*y0vec)/C[1,1])
-        # print("elvec",e1vec,e0)
     return e0 * e1vec.mean()
 
 def redVecCDF2DLattice(sigma=cp.eye(2),ub=cp.array([[+cp.inf,+cp.inf]]), 

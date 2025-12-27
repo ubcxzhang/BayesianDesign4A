@@ -1,31 +1,6 @@
-
 import cupy as cp
-
-
-#################### for normal code ##################
 from gbayesdesign.mvn import pdf2D, pdf1D
 from . import rndgenerator
-
-# #################### for model checking #################
-# from mvn import pdf2D, pdf1D
-# import rndgenerator    
-
-import sys
-print(sys.path)
-
-### """modification: change cp.linalg.inv to cp.linalg.pinv"""
-### """modification: ensure the covariance are non-singular for r.v.s generation"""
-# def ensure_positive_definite(matrix, comment=False):
-#     det = cp.linalg.det(matrix)
-#     if abs(det) < 1e-12:
-#         if comment: print("Matrix is near-singular, adjusting...")
-#         matrix -= cp.eye(matrix.shape[0]) * 1e-6
-    
-#     return matrix
-def ensure_positive_definite(matrix, jitter=1e-6):
-    xp = cp.get_array_module(matrix)
-    return matrix + xp.eye(matrix.shape[0]) * jitter
-
 
 
 class BayesSampler:
@@ -129,47 +104,48 @@ class BayesSampler:
         # Set covariance matrix of all test information units, 𝚺₀
         if self.degenerate is None:
             # Set covariance matrix of all test information units, 𝚺₀
-            self.Sigma_0=cp.identity(2)
-            self.Sigma_0[1,0]=self.Sigma_0[0,1]=cp.sqrt(r);
+            self.Sigma_0 = cp.identity(2)
+            self.Sigma_0[1, 0] = self.Sigma_0[0, 1] = cp.sqrt(r);
 
             # Set prior covariance matrix 𝚺₁
             if Sigma_1 is not None:
-                self.Sigma_1 = Sigma_1 
+                self.Sigma_1 = Sigma_1
             else:
                 self.Sigma_1 = Sigma1_coeff * self.Sigma_0
-            
+
             # Set prior mean of efficacy for whole population 𝛍₁
             self.mu_1 = cp.array([delta, delta])
 
             # Set prior mean of efficacy for subgroup 𝛍₁ʹ
-            self.mu_1p = cp.array([delta, delta+d])
+            self.mu_1p = cp.array([delta, delta + d])
 
             # Calculate A using Is, r, and t
-            self.__A = cp.diag(cp.array([cp.sqrt(Is*t), cp.sqrt(r*Is*t)]))
+            self.__A = cp.diag(cp.array([cp.sqrt(Is * t), cp.sqrt(r * Is * t)]))
             # Store inverse of 𝚺₀ and 𝚺₁ for calculation expediency
-            self.__Sigma_1Inv = cp.linalg.pinv(self.Sigma_1) 
+            self.__Sigma_1Inv = cp.linalg.pinv(self.Sigma_1)
             self.__Sigma_0Inv = cp.linalg.pinv(self.Sigma_0)
-            
+
             # Compute posterior covariance matrix 𝚺₂
             self.Sigma_2 = cp.linalg.pinv(self.__Sigma_1Inv + self.__A @ self.__Sigma_0Inv @ self.__A)
-            if r == 1: ###################################################################### non-singularity
-                self.Sigma_2 = cp.diag(cp.array([Sigma1_coeff / (1 + Sigma1_coeff * self.Is * self.t), Sigma1_coeff / (1 + Sigma1_coeff * self.r * self.Is * self.t)])) @ self.Sigma_0            
-            # COMPUTE INTERIM DISTRIBUTION
+            if r == 1:  ###################################################################### non-singularity
+                self.Sigma_2 = cp.diag(cp.array([Sigma1_coeff / (1 + Sigma1_coeff * self.Is * self.t), Sigma1_coeff / (
+                            1 + Sigma1_coeff * self.r * self.Is * self.t)])) @ self.Sigma_0
+                # COMPUTE INTERIM DISTRIBUTION
             S0iAS2 = self.__Sigma_0Inv @ self.__A @ self.Sigma_2
             S0iAS2_S1i = S0iAS2 @ self.__Sigma_1Inv
 
             # Compute marginal interim covariance matrix 𝚺₃ at t
             self.Sigma_3 = cp.linalg.pinv(self.__Sigma_0Inv - (S0iAS2 @ self.__A @ self.__Sigma_0Inv))
-            
+
             # Compute marginal mean of efficacy for whole population 𝛍₁
             self.mu_3 = self.Sigma_3 @ S0iAS2_S1i @ self.mu_1
             # Compute marginal mean of efficacy for subgroup 𝛍₁ʹ
-            
+
             self.mu_3p = self.Sigma_3 @ S0iAS2_S1i @ self.mu_1p
         else:
             ## here Sigmas are all variance 
             ## but in side the rs.normal function we should use standard deviation
-            if self.degenerate == 0: # <<<<<<<<<<<<<<<< 1D subgroup
+            if self.degenerate == 0:  # <<<<<<<<<<<<<<<< 1D subgroup
                 self.mu_0 = cp.sqrt(self.r * self.Is * self.t) * self.delta
                 self.Sigma_0 = cp.array([1])
                 if Sigma_1 is not None:
@@ -179,9 +155,10 @@ class BayesSampler:
                     self.Sigma_1 = Sigma1_coeff * self.Sigma_0
 
                 self.mu_1, self.mu_1p = self.delta, self.delta + self.d
-                
+
                 self.Sigma_2 = Sigma1_coeff / (1 + Sigma1_coeff * self.r * self.Is * self.t)
-                self.mu_3, self.mu_3p = (self.delta) * cp.sqrt(self.r * self.Is * self.t), (self.delta + self.d) * cp.sqrt(self.r * self.Is * self.t)
+                self.mu_3, self.mu_3p = (self.delta) * cp.sqrt(self.r * self.Is * self.t), (
+                            self.delta + self.d) * cp.sqrt(self.r * self.Is * self.t)
                 self.Sigma_3 = 1 + Sigma1_coeff * self.r * self.Is * self.t
                 # print("!!!!!!!!!!!!!!!!!!check!!!!!!!!!!!!!!!!")
                 # print(f"𝛍3={self.mu_3},{self.Sigma_3}")
@@ -195,7 +172,8 @@ class BayesSampler:
                     self.Sigma_1 = Sigma1_coeff * self.Sigma_0
                 self.mu_1, self.mu_1p = self.delta, self.delta
                 self.Sigma_2 = Sigma1_coeff / (1 + Sigma1_coeff * self.Is * self.t)
-                self.mu_3, self.mu_3p = (self.delta) * cp.sqrt(self.Is * self.t), (self.delta) * cp.sqrt(self.Is * self.t)
+                self.mu_3, self.mu_3p = (self.delta) * cp.sqrt(self.Is * self.t), (self.delta) * cp.sqrt(
+                    self.Is * self.t)
                 self.Sigma_3 = 1 + Sigma1_coeff * self.Is * self.t
         # Seed pseudorandom number generator
         rndgenerator.seed(random_seed)
@@ -206,16 +184,18 @@ class BayesSampler:
         rs = rndgenerator.get_random_state()
         if self.degenerate is None:
             choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
-            prior_samples = rs.multivariate_normal(self.mu_1p, ensure_positive_definite(self.Sigma_1), size=N) * choices + \
-                            rs.multivariate_normal(self.mu_1, ensure_positive_definite(self.Sigma_1), size=N) * (1 - choices)
+            prior_samples = rs.multivariate_normal(self.mu_1p, ensure_positive_definite(self.Sigma_1),
+                                                   size=N) * choices + \
+                            rs.multivariate_normal(self.mu_1, ensure_positive_definite(self.Sigma_1), size=N) * (
+                                        1 - choices)
         else:
-            if self.degenerate == 0: # <<<<<<<<<<<<<<<< 1D
+            if self.degenerate == 0:  # <<<<<<<<<<<<<<<< 1D
                 choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
                 N_array = rs.normal((self.delta), 1, size=N).reshape(-1, 1)
                 Np_array = rs.normal((self.delta + self.d), 1, size=N).reshape(-1, 1)
                 prior_samples = ((1 - choices) * N_array + choices * Np_array).flatten()
             elif self.degenerate == 1:
-                prior_samples = rs.normal((self.delta), 1, size=N) 
+                prior_samples = rs.normal((self.delta), 1, size=N)
                 # >>>>>>>>>>>>>>> 1D
         return prior_samples
 
@@ -236,15 +216,16 @@ class BayesSampler:
             ASigma0invXt = self.__A @ self.__Sigma_0Inv @ Xt
             mu_2 = self.Sigma_2 @ ((self.__Sigma_1Inv @ self.mu_1) + ASigma0invXt)
             mu_2p = self.Sigma_2 @ ((self.__Sigma_1Inv @ self.mu_1p) + ASigma0invXt)
-            if self.r == 1: ###################################################################### non-singularity
-                mu_2 = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt( self.Is * self.t) * Xt[0]) / (
-                            1 + self.Sigma1_coeff * self.Is * self.t), 
-                                         (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[1]) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+            if self.r == 1:  ###################################################################### non-singularity
+                mu_2 = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t),
+                                 (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[1]) / (
+                                         1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
                 mu_2p = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
-                            1 + self.Sigma1_coeff * self.Is * self.t), 
-                                         (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[1]) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+                        1 + self.Sigma1_coeff * self.Is * self.t),
+                                  (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[
+                                      1]) / (
+                                          1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
             # Compute p₂
             f1_Xt = pdf2D(self.mu_3p, ensure_positive_definite(self.Sigma_3), Xt)  # Xₜ if subgroup effect = true
             f0_Xt = pdf2D(self.mu_3, ensure_positive_definite(self.Sigma_3), Xt)  # Xₜ if subgroup effect = false
@@ -256,11 +237,13 @@ class BayesSampler:
             self.Delta_choices = choices.get()
             # posterior_samples = rs.multivariate_normal(mu_2p, self.Sigma_2, size=N) * choices + \
             #                     rs.multivariate_normal(mu_2, self.Sigma_2, size=N) * (1 - choices)
-            posterior_samples = rs.multivariate_normal(mu_2p, ensure_positive_definite(self.Sigma_2), size=N) * choices + \
-                                rs.multivariate_normal(mu_2, ensure_positive_definite(self.Sigma_2), size=N) * (1 - choices)
-        elif Xt.shape == (2,): # Check if Xt has 2 elements (i.e., shape (2,))     
-            Xit = Xt[1-int(self.degenerate)] # s.t., when self.degenerate=0, Xit = Xt[1] for subgroup model
-            if self.degenerate == 0: # <<<<<<<<<<<<<<<< 1D
+            posterior_samples = rs.multivariate_normal(mu_2p, ensure_positive_definite(self.Sigma_2),
+                                                       size=N) * choices + \
+                                rs.multivariate_normal(mu_2, ensure_positive_definite(self.Sigma_2), size=N) * (
+                                            1 - choices)
+        elif Xt.shape == (2,):  # Check if Xt has 2 elements (i.e., shape (2,))
+            Xit = Xt[1 - int(self.degenerate)]  # s.t., when self.degenerate=0, Xit = Xt[1] for subgroup model
+            if self.degenerate == 0:  # <<<<<<<<<<<<<<<< 1D
                 # Xₜ if subgroup effect = true
                 f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)
                 # Xₜ if subgroup effect = false
@@ -272,24 +255,24 @@ class BayesSampler:
                 pvals = cp.array([1 - p_2, p_2])
                 rs = rndgenerator.get_random_state()
                 choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
-                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t)* Xit) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)
-                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t)* Xit) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)
-                
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+
                 N_array = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
-                Np_array = rs.normal(mu_2p,  cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
+                Np_array = rs.normal(mu_2p, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
                 posterior_samples = ((1 - choices) * N_array + choices * Np_array).flatten()
-                
+
             elif self.degenerate == 1:
                 rs = rndgenerator.get_random_state()
-                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t)* Xit) / (
-                            1 + self.Sigma1_coeff * self.Is * self.t)
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t)
                 posterior_samples = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N)
                 # >>>>>>>>>>>>>>> 1D
         else:  # Check if Xt has only 1 elements (i.e., shape (1,))
             Xit = Xt
-            if self.degenerate == 0: # <<<<<<<<<<<<<<<< 1D
+            if self.degenerate == 0:  # <<<<<<<<<<<<<<<< 1D
                 # Xₜ if subgroup effect = true
                 f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)
                 # Xₜ if subgroup effect = false
@@ -301,19 +284,19 @@ class BayesSampler:
                 pvals = cp.array([1 - p_2, p_2])
                 rs = rndgenerator.get_random_state()
                 choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
-                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t)* Xit) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)
-                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t)* Xit) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)
-                
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+
                 N_array = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
-                Np_array = rs.normal(mu_2p,  cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
+                Np_array = rs.normal(mu_2p, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
                 posterior_samples = ((1 - choices) * N_array + choices * Np_array).flatten()
-                
+
             elif self.degenerate == 1:
                 rs = rndgenerator.get_random_state()
-                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t)* Xit) / (
-                            1 + self.Sigma1_coeff * self.Is * self.t)
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t)
                 posterior_samples = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N)
                 # >>>>>>>>>>>>>>> 1D
         return posterior_samples
@@ -325,16 +308,18 @@ class BayesSampler:
         (independent of drug efficacy)
         """
         if self.degenerate is None:
-            pvals = cp.array([1-self.p_1, self.p_1])
+            pvals = cp.array([1 - self.p_1, self.p_1])
             rs = rndgenerator.get_random_state()
             choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
-            XtMarginal_samples = rs.multivariate_normal(self.mu_3, ensure_positive_definite(self.Sigma_3), size=N) * (1 - choices) + \
-                                 rs.multivariate_normal(self.mu_3p, ensure_positive_definite(self.Sigma_3), size=N) * choices
+            XtMarginal_samples = rs.multivariate_normal(self.mu_3, ensure_positive_definite(self.Sigma_3), size=N) * (
+                        1 - choices) + \
+                                 rs.multivariate_normal(self.mu_3p, ensure_positive_definite(self.Sigma_3),
+                                                        size=N) * choices
             self.xt_choices = choices.get()
         else:
             # 1D
-            rs = rndgenerator.get_random_state()   # <- add here
-            if self.degenerate == 0: # <<<<<<<<<<<<<<<< 1D
+            rs = rndgenerator.get_random_state()  # <- add here
+            if self.degenerate == 0:  # <<<<<<<<<<<<<<<< 1D
                 pvals = cp.array([1 - self.p_1, self.p_1])
                 rs = rndgenerator.get_random_state()
                 choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
@@ -377,15 +362,16 @@ class BayesSampler:
             mu_2p = cp.dot(
                 self.Sigma_2,
                 self.__Sigma_1Inv @ self.mu_1p + ASigma0invXt)
-            if self.r == 1: ###################################################################### non-singularity
-                mu_2 = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt( self.Is * self.t) * Xt[0]) / (
-                            1 + self.Sigma1_coeff * self.Is * self.t), 
-                                         (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[1]) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+            if self.r == 1:  ###################################################################### non-singularity
+                mu_2 = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t),
+                                 (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[1]) / (
+                                         1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
                 mu_2p = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
-                            1 + self.Sigma1_coeff * self.Is * self.t), 
-                                         (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[1]) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+                        1 + self.Sigma1_coeff * self.Is * self.t),
+                                  (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[
+                                      1]) / (
+                                          1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
             # Xₜ if subgroup effect = true
             f1_Xt = pdf2D(self.mu_3p, ensure_positive_definite(self.Sigma_3), Xt)
             # Xₜ if subgroup effect = false
@@ -393,31 +379,25 @@ class BayesSampler:
 
             # Compute p₂
             p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
-        elif Xt.shape == (2,): # Check if Xt has 2 elements (i.e., shape (2,))     
-            Xit = Xt[1-int(self.degenerate)]     
-            if self.degenerate == 0: # <<<<<<<<<<<<<<<< 1D
-                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t)* Xit) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)
-                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t)* Xit) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)
-                # print("!!!!!!!!!!!!!!!!!!check!!!!!!!!!!!!!!!!")
-                # print(f"𝛍₂={mu_2}")
-                # print(f"check mu2p: degenerate: {self.degenerate}, delta:{self.delta},d: {self.d}, \n sigma1_coeff: {self.Sigma1_coeff} \n nominator: {(self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit)}, \n x2t:{Xit}.\n denominator:{(1 + self.Sigma1_coeff * self.r * self.Is * self.t)}")
-                # print(f"mu2_p:{mu_2p}")
-                # Xₜ if subgroup effect = true
-                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit) # only care about X1t
+        elif Xt.shape == (2,):  # Check if Xt has 2 elements (i.e., shape (2,))
+            Xit = Xt[1 - int(self.degenerate)]
+            if self.degenerate == 0:  # <<<<<<<<<<<<<<<< 1D
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)  # only care about X1t
                 # Xₜ if subgroup effect = false
                 f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xit)
 
                 # Compute p₂
                 p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
-                # print(f"p₂={p_2},fx1={f1_Xt} ")
 
             elif self.degenerate == 1:
-                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t)* Xit) / (
-                            1 + self.Sigma1_coeff * self.Is * self.t) # only care about X2t
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t)  # only care about X2t
                 mu_2p = mu_2
-                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit) # only care about X1t
+                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)  # only care about X1t
                 # Xₜ if subgroup effect = false
                 f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xit)
 
@@ -426,31 +406,26 @@ class BayesSampler:
                 # >>>>>>>>>>>>>>> 1D 
             else:
                 print("Check degeneration")
-        else: 
-            if self.degenerate == 0: # <<<<<<<<<<<<<<<< 1D
-                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t)* Xt) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)
-                # print("!!!!!!!!!!!!!!!!!!check!!!!!!!!!!!!!!!!")
-                # print(f"𝛍₂={mu_2}")
-                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t)* Xt) / (
-                            1 + self.Sigma1_coeff * self.r * self.Is * self.t)
-                # print(f"check mu2p: degenerate: {self.degenerate}, delta:{self.delta},d: {self.d}, \n sigma1_coeff: {self.Sigma1_coeff} \n nominator: {(self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit)}, \n x2t:{Xit}.\n denominator:{(1 + self.Sigma1_coeff * self.r * self.Is * self.t)}")
-                # print(f"mu2_p:{mu_2p}")
+        else:
+            if self.degenerate == 0:  # <<<<<<<<<<<<<<<< 1D
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
                 # Xₜ if subgroup effect = true
-                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xt) # only care about X1t
+                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xt)  # only care about X1t
                 # Xₜ if subgroup effect = false
                 f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xt)
 
                 # Compute p₂
                 p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
-                # print(f"p₂={p_2},fx1={f1_Xt} ")
 
             elif self.degenerate == 1:
-                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t)* Xt) / (
-                            1 + self.Sigma1_coeff * self.Is * self.t)
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t)
                 mu_2p = mu_2
-                
-                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xt) # only care about X1t
+
+                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xt)  # only care about X1t
                 # Xₜ if subgroup effect = false
                 f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xt)
 
@@ -460,3 +435,7 @@ class BayesSampler:
             else:
                 print("Check degeneration")
         return mu_2, mu_2p, p_2
+
+    def ensure_positive_definite(matrix, jitter=1e-6):
+        xp = cp.get_array_module(matrix)
+        return matrix + xp.eye(matrix.shape[0]) * jitter

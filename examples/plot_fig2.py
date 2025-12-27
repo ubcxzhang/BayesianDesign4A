@@ -41,28 +41,12 @@ for row_idx, effect in enumerate(effect_rows):
     tables = pd.read_csv(f'results/t_Test_iall_{effect}_combined_results.csv')
     deg_tables2 = tables 
     
-#     # print('deg',deg_rtable['deg.power'])
-#     # tables = tables[tables['Is'] == fixIs]
-    # distinct_combinations = tables[['Sigma1_coeff_k']].drop_duplicates()
-#     unique_dcofs = distinct_combinations['dcof'].unique()
-#     dcof = unique_dcofs[0] #  if effect == 'none' else unique_dcofs[0]
-
-#     unique_x1ts = distinct_combinations['X1_t_orig'].unique()
-#     tables_dict = {x1t: tables[tables['X1_t_orig'] == x1t] for x1t in unique_x1ts}
-#     deg_tables2_dict = {x1t: deg_tables2[abs(deg_tables2['X1_t_orig'] - x1t)<1e-6] for x1t in unique_x1ts}
     filtered_table = tables
     deg_filtered_table2=deg_tables2
     dcof = tables['dcof'].unique().item()
     fixIs = tables['Is'].unique().item()
     for col_idx, fixp1 in enumerate(p1_dict[effect]):
         ax = axs[row_idx, col_idx]
-        
-#         for x1t in unique_x1ts:
-#             filtered_table = tables_dict.get(x1t, pd.DataFrame())
-#             deg_filtered_table2 = deg_tables2_dict.get(x1t, pd.DataFrame())
-
-#             if filtered_table.empty:
-#                 continue
 
         label_added = False
         
@@ -90,10 +74,6 @@ for row_idx, effect in enumerate(effect_rows):
                 (deg_filtered_table2['Sigma1_coeff_k'] == fixSigma1_coeff_k) 
             ]
             
-#             print(f"Effect: {effect}, fixp1: {fixp1}, t: {t}, delta: {delta}")
-#             print(f"Selected rows shape: {selected_rows.shape}")
-#             print(f"Deg selected rows shape: {deg_selected_rows2.shape}")
-
             # Even if selected_rows is empty, force a dummy entry for the legend
             ax.plot([], [], label=f't={t}', marker=' ', linestyle='None', markersize=15, color=color, alpha=alpha)
             if selected_rows.empty:

@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>gbayesdesign.Optimizer API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>gbayesdesign.Optimizer</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="gbayesdesign.Optimizer.Optimizer"><code class="flex name class">
+<span>class <span class="ident">Optimizer</span></span>
+<span>(</span><span>power=None, constraint=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Optimizer(object):
+    &#34;&#34;&#34;
+    Generic Optimizer object,
+    Used to standardize derivative-free constrained nonlinear multivariate solvers 
+    from different packages
+
+    Attributes
+    ----------
+    power : function
+        The objective function to be solved for
+        Within this context, it is named &#34;power&#34;
+    constraint : function
+        The constraint function
+        Within this context, maintains Type I error at a predetermined threshold
+    &#34;&#34;&#34;
+    def __init__(self, power=None, constraint=None):
+        self.power = power
+        self.constraint = constraint
+    def minimize(self,**kwargs):
+        &#34;&#34;&#34;
+        Call this function to run the solver
+        Implementation is left entirely to child classes to define
+        &#34;&#34;&#34;
+        pass</code></pre>
+</details>
+<div class="desc"><p>Generic Optimizer object,
+Used to standardize derivative-free constrained nonlinear multivariate solvers
+from different packages</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>power</code></strong> :&ensp;<code>function</code></dt>
+<dd>The objective function to be solved for
+Within this context, it is named "power"</dd>
+<dt><strong><code>constraint</code></strong> :&ensp;<code>function</code></dt>
+<dd>The constraint function
+Within this context, maintains Type I error at a predetermined threshold</dd>
+</dl></div>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="gbayesdesign.Optimizer.ZSQP" href="#gbayesdesign.Optimizer.ZSQP">ZSQP</a></li>
+<li><a title="gbayesdesign.Optimizer.ZSQP_1d" href="#gbayesdesign.Optimizer.ZSQP_1d">ZSQP_1d</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="gbayesdesign.Optimizer.Optimizer.minimize"><code class="name flex">
+<span>def <span class="ident">minimize</span></span>(<span>self, **kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def minimize(self,**kwargs):
+    &#34;&#34;&#34;
+    Call this function to run the solver
+    Implementation is left entirely to child classes to define
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Call this function to run the solver
+Implementation is left entirely to child classes to define</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="gbayesdesign.Optimizer.ZSQP"><code class="flex name class">
+<span>class <span class="ident">ZSQP</span></span>
+<span>(</span><span>power=None, constraint=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZSQP(Optimizer):
+    &#34;&#34;&#34;
+    Adaptation of SciPy&#39;s SLSQP (Sequential Least SQuares Processing) minimization solver
+    to the standard Optimizer interface for the Q(Xt, Z) problem
+    &#34;&#34;&#34;
+
+    def __init__(self, power=None, constraint=None):
+        super().__init__(power, constraint)
+
+    def minimize(self, x0=np.array([1., 2.]), lb=0., ub=4.5, verbose=False):
+        &#34;&#34;&#34;
+        Call this function to run SciPy&#39;s SLSQP solver
+
+        Parameters
+        ----------
+        x0 : numpy.ndarray(2)
+            Initial value of input variable/s
+        lb : float
+            Lower bound for x
+            (Default is 0)
+        ub : float
+            Upper bound for x
+            (Default is 4.5)
+        verbose : boolean
+            Verbose flag
+            Set to True for debugging output
+            (Default is False)
+        &#34;&#34;&#34;
+        # inequality means that it is to be non-negative: https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize
+                # Define inequality constraint to be non-negative
+        nonlin_con_ineq = {&#39;type&#39;: &#39;ineq&#39;, &#39;fun&#39;: self.constraint}
+        
+        # Attempt optimization with increasing upper bounds until success or ub=6
+        while True:
+            bounds = [(lb, ub), (lb, ub)]
+            res = optimize.minimize(
+                self.power,
+                x0,
+                method=&#39;SLSQP&#39;,
+                jac=&#39;3-point&#39;,
+                constraints=[nonlin_con_ineq],
+                tol=None,
+                options={
+                    &#39;maxiter&#39;: 1000,
+                    &#39;ftol&#39;: 1e-12,
+                    &#39;eps&#39;: 1.4901161193847656e-08,
+                    &#39;iprint&#39;: 100,
+                    &#39;disp&#39;: verbose
+                },
+                bounds=bounds
+            )
+            
+            # Check if optimization was successful
+            if res.success:
+                break  # Exit the loop if successful
+            
+            # If unsuccessful and ub is less than 6, increment ub
+            if ub &lt; 7:
+                ub += .25
+                if verbose:
+                    print(f&#34;Optimization failed. Increasing ub to {ub}.&#34;)
+            else:
+                if verbose:
+                    print(&#34;Optimization failed and ub reached maximum limit of 6.&#34;)
+                break  # Stop if ub has reached 6 and optimization still fails
+        
+        return res</code></pre>
+</details>
+<div class="desc"><p>Adaptation of SciPy's SLSQP (Sequential Least SQuares Processing) minimization solver
+to the standard Optimizer interface for the Q(Xt, Z) problem</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="gbayesdesign.Optimizer.Optimizer" href="#gbayesdesign.Optimizer.Optimizer">Optimizer</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="gbayesdesign.Optimizer.ZSQP.minimize"><code class="name flex">
+<span>def <span class="ident">minimize</span></span>(<span>self, x0=array([1., 2.]), lb=0.0, ub=4.5, verbose=False)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def minimize(self, x0=np.array([1., 2.]), lb=0., ub=4.5, verbose=False):
+    &#34;&#34;&#34;
+    Call this function to run SciPy&#39;s SLSQP solver
+
+    Parameters
+    ----------
+    x0 : numpy.ndarray(2)
+        Initial value of input variable/s
+    lb : float
+        Lower bound for x
+        (Default is 0)
+    ub : float
+        Upper bound for x
+        (Default is 4.5)
+    verbose : boolean
+        Verbose flag
+        Set to True for debugging output
+        (Default is False)
+    &#34;&#34;&#34;
+    # inequality means that it is to be non-negative: https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize
+            # Define inequality constraint to be non-negative
+    nonlin_con_ineq = {&#39;type&#39;: &#39;ineq&#39;, &#39;fun&#39;: self.constraint}
+    
+    # Attempt optimization with increasing upper bounds until success or ub=6
+    while True:
+        bounds = [(lb, ub), (lb, ub)]
+        res = optimize.minimize(
+            self.power,
+            x0,
+            method=&#39;SLSQP&#39;,
+            jac=&#39;3-point&#39;,
+            constraints=[nonlin_con_ineq],
+            tol=None,
+            options={
+                &#39;maxiter&#39;: 1000,
+                &#39;ftol&#39;: 1e-12,
+                &#39;eps&#39;: 1.4901161193847656e-08,
+                &#39;iprint&#39;: 100,
+                &#39;disp&#39;: verbose
+            },
+            bounds=bounds
+        )
+        
+        # Check if optimization was successful
+        if res.success:
+            break  # Exit the loop if successful
+        
+        # If unsuccessful and ub is less than 6, increment ub
+        if ub &lt; 7:
+            ub += .25
+            if verbose:
+                print(f&#34;Optimization failed. Increasing ub to {ub}.&#34;)
+        else:
+            if verbose:
+                print(&#34;Optimization failed and ub reached maximum limit of 6.&#34;)
+            break  # Stop if ub has reached 6 and optimization still fails
+    
+    return res</code></pre>
+</details>
+<div class="desc"><p>Call this function to run SciPy's SLSQP solver</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x0</code></strong> :&ensp;<code>numpy.ndarray(2)</code></dt>
+<dd>Initial value of input variable/s</dd>
+<dt><strong><code>lb</code></strong> :&ensp;<code>float</code></dt>
+<dd>Lower bound for x
+(Default is 0)</dd>
+<dt><strong><code>ub</code></strong> :&ensp;<code>float</code></dt>
+<dd>Upper bound for x
+(Default is 4.5)</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>boolean</code></dt>
+<dd>Verbose flag
+Set to True for debugging output
+(Default is False)</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="gbayesdesign.Optimizer.ZSQP_1d"><code class="flex name class">
+<span>class <span class="ident">ZSQP_1d</span></span>
+<span>(</span><span>power=None, constraint=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ZSQP_1d(Optimizer):
+    &#34;&#34;&#34;
+    Adaptation of SciPy&#39;s SLSQP (Sequential Least SQuares Processing) minimization solver
+    to the standard Optimizer interface for the Q(Xt, Z) problem
+    &#34;&#34;&#34;
+
+    def __init__(self, power=None, constraint=None):
+        super().__init__(power, constraint)
+
+    def minimize(self, x0=1., lb=0., ub=4., verbose=False):
+        &#34;&#34;&#34;
+        Call this function to run SciPy&#39;s SLSQP solver
+
+        Parameters
+        ----------
+        x0 : float
+            Initial value of input variable
+        lb : float
+            Lower bound for x
+            (Default is 0)
+        ub : float
+            Upper bound for x
+            (Default is 3.5)
+        verbose : boolean
+            Verbose flag
+            Set to True for debugging output
+            (Default is False)
+        &#34;&#34;&#34;
+        
+        nonlin_con_ineq = {&#39;type&#39;: &#39;ineq&#39;, &#39;fun&#39;: self.constraint}
+        bounds = [(lb, ub)]
+
+        # Now, run the solver
+        print(&#34;Running solver...&#34;)
+        res = optimize.minimize(self.power, x0, method=&#39;SLSQP&#39;,
+                                jac=&#39;3-point&#39;, constraints=(nonlin_con_ineq),
+                                tol=None, callback=None, bounds=bounds,
+                                options={
+                                    &#39;maxiter&#39;: 1000, &#39;ftol&#39;: 1e-32,
+                                    &#39;eps&#39;: 1.4901161193847656e-32,
+                                    &#39;finite_diff_rel_step&#39;: None,
+                                    &#39;iprint&#39;: 100, &#39;disp&#39;: verbose})
+        print(&#34;Solver finished.&#34;)
+        print(&#34;Result:&#34;, res)
+
+        # Additional debug info      
+        return res  # Return raw OptimizeResult</code></pre>
+</details>
+<div class="desc"><p>Adaptation of SciPy's SLSQP (Sequential Least SQuares Processing) minimization solver
+to the standard Optimizer interface for the Q(Xt, Z) problem</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="gbayesdesign.Optimizer.Optimizer" href="#gbayesdesign.Optimizer.Optimizer">Optimizer</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="gbayesdesign.Optimizer.ZSQP_1d.minimize"><code class="name flex">
+<span>def <span class="ident">minimize</span></span>(<span>self, x0=1.0, lb=0.0, ub=4.0, verbose=False)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def minimize(self, x0=1., lb=0., ub=4., verbose=False):
+    &#34;&#34;&#34;
+    Call this function to run SciPy&#39;s SLSQP solver
+
+    Parameters
+    ----------
+    x0 : float
+        Initial value of input variable
+    lb : float
+        Lower bound for x
+        (Default is 0)
+    ub : float
+        Upper bound for x
+        (Default is 3.5)
+    verbose : boolean
+        Verbose flag
+        Set to True for debugging output
+        (Default is False)
+    &#34;&#34;&#34;
+    
+    nonlin_con_ineq = {&#39;type&#39;: &#39;ineq&#39;, &#39;fun&#39;: self.constraint}
+    bounds = [(lb, ub)]
+
+    # Now, run the solver
+    print(&#34;Running solver...&#34;)
+    res = optimize.minimize(self.power, x0, method=&#39;SLSQP&#39;,
+                            jac=&#39;3-point&#39;, constraints=(nonlin_con_ineq),
+                            tol=None, callback=None, bounds=bounds,
+                            options={
+                                &#39;maxiter&#39;: 1000, &#39;ftol&#39;: 1e-32,
+                                &#39;eps&#39;: 1.4901161193847656e-32,
+                                &#39;finite_diff_rel_step&#39;: None,
+                                &#39;iprint&#39;: 100, &#39;disp&#39;: verbose})
+    print(&#34;Solver finished.&#34;)
+    print(&#34;Result:&#34;, res)
+
+    # Additional debug info      
+    return res  # Return raw OptimizeResult</code></pre>
+</details>
+<div class="desc"><p>Call this function to run SciPy's SLSQP solver</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x0</code></strong> :&ensp;<code>float</code></dt>
+<dd>Initial value of input variable</dd>
+<dt><strong><code>lb</code></strong> :&ensp;<code>float</code></dt>
+<dd>Lower bound for x
+(Default is 0)</dd>
+<dt><strong><code>ub</code></strong> :&ensp;<code>float</code></dt>
+<dd>Upper bound for x
+(Default is 3.5)</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>boolean</code></dt>
+<dd>Verbose flag
+Set to True for debugging output
+(Default is False)</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="gbayesdesign" href="index.html">gbayesdesign</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="gbayesdesign.Optimizer.Optimizer" href="#gbayesdesign.Optimizer.Optimizer">Optimizer</a></code></h4>
+<ul class="">
+<li><code><a title="gbayesdesign.Optimizer.Optimizer.minimize" href="#gbayesdesign.Optimizer.Optimizer.minimize">minimize</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="gbayesdesign.Optimizer.ZSQP" href="#gbayesdesign.Optimizer.ZSQP">ZSQP</a></code></h4>
+<ul class="">
+<li><code><a title="gbayesdesign.Optimizer.ZSQP.minimize" href="#gbayesdesign.Optimizer.ZSQP.minimize">minimize</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="gbayesdesign.Optimizer.ZSQP_1d" href="#gbayesdesign.Optimizer.ZSQP_1d">ZSQP_1d</a></code></h4>
+<ul class="">
+<li><code><a title="gbayesdesign.Optimizer.ZSQP_1d.minimize" href="#gbayesdesign.Optimizer.ZSQP_1d.minimize">minimize</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

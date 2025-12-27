@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>gbayesdesign.BayesSampler API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>gbayesdesign.BayesSampler</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="gbayesdesign.BayesSampler.BayesSampler"><code class="flex name class">
+<span>class <span class="ident">BayesSampler</span></span>
+<span>(</span><span>t=0.5,<br>r=0.5,<br>Is=211.0,<br>p_1=0.75,<br>delta=0.36,<br>d=0.24,<br>Sigma_1=None,<br>Sigma1_coeff=0.2,<br>random_seed=101,<br>degenerate=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BayesSampler:
+    &#34;&#34;&#34;
+    Takes input parameters and calculates new parameters and random samples for:
+    1) a prior distribution of drug efficacy 𝚫,
+    2) a posterior distribution based on the prior distribution 𝚫|Xₜ, and
+    3) a marginal interim distribution at t, Xₜ
+
+    Attributes
+    ----------
+    t : float
+        The point in the trial the test takes place, &#34;time&#34;
+        Input parameter
+        (default is 0.5)
+    r : float
+        Subgroup proportion vs whole
+        Input parameter
+        (default is 0.5)
+    Is : float
+        Total number of information units
+        Input parameter
+        (default is 211)
+    p_1 : float
+        The prior probability of a subgroup effect existing
+        Input parameter
+        (default is 0.75)
+    delta : float
+        The mean of drug efficacy in the entire population
+        Input parameter
+    d : float
+        The degree of additional subgroup effect
+        Input parameter
+    Sigma_0 : cupy.ndarray(2,2)
+        The covariance matrix of the distribution
+    Sigma_1 : cupy.ndarray(2,2)
+        The covariance matrix of the prior distribution
+        Can either be defined as an input parameter 
+        or generated from Sigma_0 using an input coefficient
+    Sigma_2 : cupy.ndarray(2,2)
+        The covariance matrix of generated posterior distributions
+    Sigma_3 : cupy.ndarray(2,2)
+        The covariance matrix of the marginal interim distribution
+    mu_1 : cupy.ndarray(2)
+        The mean efficacy on the entire population, generated from input delta
+    mu_1p : cupy.ndarray(2)
+        The mean efficacy on the subgroup, generated from a combination of inputs delta and d
+    mu_3 : cupy.ndarray(2)
+        The mean efficacy on the entire population in the interim distribution
+    mu_3p : cupy.ndarray(2)
+        The mean efficacy on the subgroup population in the interim distribution
+    degenerate : integer
+        none if the model is non-degenerate
+        0 if the model only considers subgroup
+        1 if the model only considers whole population
+    &#34;&#34;&#34;
+
+    def __init__(self, t=0.5, r=0.5, Is=211.0, p_1=0.75,
+                 delta=0.36, d=0.24,
+                 Sigma_1=None, Sigma1_coeff=0.2,
+                 random_seed=101, degenerate=None):
+        &#34;&#34;&#34;
+        Parameters
+        ----------
+        self
+        t : float
+            The point in the trial the test takes place
+            (default is 0.5)
+        r : float
+            Subgroup proportion vs whole
+            (default is 0.5)
+        Is : float
+            Total number of information units
+            (default is 211)
+        p_1 : float
+            The prior probability of a subgroup effect existing
+            (default is 0.75)
+        delta : float
+            The mean of drug efficacy in the entire population
+        d : float
+            The degree of additional subgroup effect
+        Sigma_1 : cupy.ndarray(2,2), optional
+            The covariance matrix of the prior distribution
+            If left as None, the constructor will use Sigma1_coeff * Sigma_0 instead
+            (default is None)
+        Sigma1_coeff : float, optional
+            The coefficient in Sigma_1 = Sigma1_coeff * Sigma_0
+            (default is 0.01)
+        random_seed : int, optional
+            Seed for random number generator
+            Set the seed for reproducible results
+            (default is 101)
+        degenerate : integer
+            none if the model is non-degenerate 
+            0 if the model only considers subgroup
+            1 if the model only considers whole population
+        &#34;&#34;&#34;
+        self.t, self.r, self.Is, self.p_1 = t, r, Is, p_1
+        self.delta, self.d, self.Sigma1_coeff = delta, d, Sigma1_coeff
+        self.degenerate = degenerate
+        # Set covariance matrix of all test information units, 𝚺₀
+        if self.degenerate is None:
+            # Set covariance matrix of all test information units, 𝚺₀
+            self.Sigma_0 = cp.identity(2)
+            self.Sigma_0[1, 0] = self.Sigma_0[0, 1] = cp.sqrt(r);
+
+            # Set prior covariance matrix 𝚺₁
+            if Sigma_1 is not None:
+                self.Sigma_1 = Sigma_1
+            else:
+                self.Sigma_1 = Sigma1_coeff * self.Sigma_0
+
+            # Set prior mean of efficacy for whole population 𝛍₁
+            self.mu_1 = cp.array([delta, delta])
+
+            # Set prior mean of efficacy for subgroup 𝛍₁ʹ
+            self.mu_1p = cp.array([delta, delta + d])
+
+            # Calculate A using Is, r, and t
+            self.__A = cp.diag(cp.array([cp.sqrt(Is * t), cp.sqrt(r * Is * t)]))
+            # Store inverse of 𝚺₀ and 𝚺₁ for calculation expediency
+            self.__Sigma_1Inv = cp.linalg.pinv(self.Sigma_1)
+            self.__Sigma_0Inv = cp.linalg.pinv(self.Sigma_0)
+
+            # Compute posterior covariance matrix 𝚺₂
+            self.Sigma_2 = cp.linalg.pinv(self.__Sigma_1Inv + self.__A @ self.__Sigma_0Inv @ self.__A)
+            if r == 1:  ###################################################################### non-singularity
+                self.Sigma_2 = cp.diag(cp.array([Sigma1_coeff / (1 + Sigma1_coeff * self.Is * self.t), Sigma1_coeff / (
+                            1 + Sigma1_coeff * self.r * self.Is * self.t)])) @ self.Sigma_0
+                # COMPUTE INTERIM DISTRIBUTION
+            S0iAS2 = self.__Sigma_0Inv @ self.__A @ self.Sigma_2
+            S0iAS2_S1i = S0iAS2 @ self.__Sigma_1Inv
+
+            # Compute marginal interim covariance matrix 𝚺₃ at t
+            self.Sigma_3 = cp.linalg.pinv(self.__Sigma_0Inv - (S0iAS2 @ self.__A @ self.__Sigma_0Inv))
+
+            # Compute marginal mean of efficacy for whole population 𝛍₁
+            self.mu_3 = self.Sigma_3 @ S0iAS2_S1i @ self.mu_1
+            # Compute marginal mean of efficacy for subgroup 𝛍₁ʹ
+
+            self.mu_3p = self.Sigma_3 @ S0iAS2_S1i @ self.mu_1p
+        else:
+            ## here Sigmas are all variance 
+            ## but in side the rs.normal function we should use standard deviation
+            if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D subgroup
+                self.mu_0 = cp.sqrt(self.r * self.Is * self.t) * self.delta
+                self.Sigma_0 = cp.array([1])
+                if Sigma_1 is not None:
+                    self.Sigma_1 = Sigma_1[-1, -1]
+                    self.Sigma1_coeff = self.Sigma_1
+                else:
+                    self.Sigma_1 = Sigma1_coeff * self.Sigma_0
+
+                self.mu_1, self.mu_1p = self.delta, self.delta + self.d
+
+                self.Sigma_2 = Sigma1_coeff / (1 + Sigma1_coeff * self.r * self.Is * self.t)
+                self.mu_3, self.mu_3p = (self.delta) * cp.sqrt(self.r * self.Is * self.t), (
+                            self.delta + self.d) * cp.sqrt(self.r * self.Is * self.t)
+                self.Sigma_3 = 1 + Sigma1_coeff * self.r * self.Is * self.t
+                # print(&#34;!!!!!!!!!!!!!!!!!!check!!!!!!!!!!!!!!!!&#34;)
+                # print(f&#34;𝛍3={self.mu_3},{self.Sigma_3}&#34;)
+            elif self.degenerate == 1:
+                self.mu_0 = cp.sqrt(self.Is * self.t) * self.delta
+                self.Sigma_0 = cp.array([1])
+                if Sigma_1 is not None:
+                    self.Sigma_1 = Sigma_1[0, 0]
+                    self.Sigma1_coeff = self.Sigma_1
+                else:
+                    self.Sigma_1 = Sigma1_coeff * self.Sigma_0
+                self.mu_1, self.mu_1p = self.delta, self.delta
+                self.Sigma_2 = Sigma1_coeff / (1 + Sigma1_coeff * self.Is * self.t)
+                self.mu_3, self.mu_3p = (self.delta) * cp.sqrt(self.Is * self.t), (self.delta) * cp.sqrt(
+                    self.Is * self.t)
+                self.Sigma_3 = 1 + Sigma1_coeff * self.Is * self.t
+        # Seed pseudorandom number generator
+        rndgenerator.seed(random_seed)
+
+    def sample_Delta(self, N=10000):
+        &#34;&#34;&#34;Return N samples from the prior distribution 𝚫&#34;&#34;&#34;
+        pvals = cp.array([1 - self.p_1, self.p_1])
+        rs = rndgenerator.get_random_state()
+        if self.degenerate is None:
+            choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+            prior_samples = rs.multivariate_normal(self.mu_1p, ensure_positive_definite(self.Sigma_1),
+                                                   size=N) * choices + \
+                            rs.multivariate_normal(self.mu_1, ensure_positive_definite(self.Sigma_1), size=N) * (
+                                        1 - choices)
+        else:
+            if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+                choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+                N_array = rs.normal((self.delta), 1, size=N).reshape(-1, 1)
+                Np_array = rs.normal((self.delta + self.d), 1, size=N).reshape(-1, 1)
+                prior_samples = ((1 - choices) * N_array + choices * Np_array).flatten()
+            elif self.degenerate == 1:
+                prior_samples = rs.normal((self.delta), 1, size=N)
+                # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D
+        return prior_samples
+
+    def sample_Delta_posterior(self, Xt, N=10000):
+        &#34;&#34;&#34;
+        Returns N samples of posterior distribution 𝚫|Xₜ, given a sample Xₜ
+
+        Parameters
+        ----------
+        Xt : cupy.ndarray(2)
+            Interim sample
+        N : int, optional
+            Number of samples to return
+            (default is 10000)
+        &#34;&#34;&#34;
+        rs = rndgenerator.get_random_state()
+        if self.degenerate is None:
+            ASigma0invXt = self.__A @ self.__Sigma_0Inv @ Xt
+            mu_2 = self.Sigma_2 @ ((self.__Sigma_1Inv @ self.mu_1) + ASigma0invXt)
+            mu_2p = self.Sigma_2 @ ((self.__Sigma_1Inv @ self.mu_1p) + ASigma0invXt)
+            if self.r == 1:  ###################################################################### non-singularity
+                mu_2 = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t),
+                                 (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[1]) / (
+                                         1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+                mu_2p = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t),
+                                  (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[
+                                      1]) / (
+                                          1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+            # Compute p₂
+            f1_Xt = pdf2D(self.mu_3p, ensure_positive_definite(self.Sigma_3), Xt)  # Xₜ if subgroup effect = true
+            f0_Xt = pdf2D(self.mu_3, ensure_positive_definite(self.Sigma_3), Xt)  # Xₜ if subgroup effect = false
+            p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+
+            pvals = cp.array([1 - p_2, p_2])
+            rs = rndgenerator.get_random_state()
+            choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+            self.Delta_choices = choices.get()
+            # posterior_samples = rs.multivariate_normal(mu_2p, self.Sigma_2, size=N) * choices + \
+            #                     rs.multivariate_normal(mu_2, self.Sigma_2, size=N) * (1 - choices)
+            posterior_samples = rs.multivariate_normal(mu_2p, ensure_positive_definite(self.Sigma_2),
+                                                       size=N) * choices + \
+                                rs.multivariate_normal(mu_2, ensure_positive_definite(self.Sigma_2), size=N) * (
+                                            1 - choices)
+        elif Xt.shape == (2,):  # Check if Xt has 2 elements (i.e., shape (2,))
+            Xit = Xt[1 - int(self.degenerate)]  # s.t., when self.degenerate=0, Xit = Xt[1] for subgroup model
+            if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+                # Xₜ if subgroup effect = true
+                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)
+                # Xₜ if subgroup effect = false
+                f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xit)
+
+                # Compute p₂
+                p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+
+                pvals = cp.array([1 - p_2, p_2])
+                rs = rndgenerator.get_random_state()
+                choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+
+                N_array = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
+                Np_array = rs.normal(mu_2p, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
+                posterior_samples = ((1 - choices) * N_array + choices * Np_array).flatten()
+
+            elif self.degenerate == 1:
+                rs = rndgenerator.get_random_state()
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t)
+                posterior_samples = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N)
+                # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D
+        else:  # Check if Xt has only 1 elements (i.e., shape (1,))
+            Xit = Xt
+            if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+                # Xₜ if subgroup effect = true
+                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)
+                # Xₜ if subgroup effect = false
+                f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xit)
+
+                # Compute p₂
+                p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+
+                pvals = cp.array([1 - p_2, p_2])
+                rs = rndgenerator.get_random_state()
+                choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+
+                N_array = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
+                Np_array = rs.normal(mu_2p, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
+                posterior_samples = ((1 - choices) * N_array + choices * Np_array).flatten()
+
+            elif self.degenerate == 1:
+                rs = rndgenerator.get_random_state()
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t)
+                posterior_samples = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N)
+                # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D
+        return posterior_samples
+
+    def sample_Xt(self, N=10000):
+        &#34;&#34;&#34;
+        Return N samples of marginal interim distribution Xₜ|i
+        conditional on whether subgroup effect i exists
+        (independent of drug efficacy)
+        &#34;&#34;&#34;
+        if self.degenerate is None:
+            pvals = cp.array([1 - self.p_1, self.p_1])
+            rs = rndgenerator.get_random_state()
+            choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+            XtMarginal_samples = rs.multivariate_normal(self.mu_3, ensure_positive_definite(self.Sigma_3), size=N) * (
+                        1 - choices) + \
+                                 rs.multivariate_normal(self.mu_3p, ensure_positive_definite(self.Sigma_3),
+                                                        size=N) * choices
+            self.xt_choices = choices.get()
+        else:
+            # 1D
+            rs = rndgenerator.get_random_state()  # &lt;- add here
+            if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+                pvals = cp.array([1 - self.p_1, self.p_1])
+                rs = rndgenerator.get_random_state()
+                choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+                N_array = rs.normal(self.mu_3, cp.sqrt(self.Sigma_3), size=N).reshape(-1, 1)
+                Np_array = rs.normal(self.mu_3p, cp.sqrt(self.Sigma_3), size=N).reshape(-1, 1)
+                XtMarginal_samples = ((1 - choices) * N_array + choices * Np_array).flatten()
+            elif self.degenerate == 1:
+                XtMarginal_samples = rs.normal(self.mu_3, cp.sqrt(self.Sigma_3), size=N)
+            # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D
+
+        return XtMarginal_samples
+
+    def get_posteriorVar(self, Xt):
+        &#34;&#34;&#34;
+        Returns the values of mu_2, mu_2 and p_2 given Xt,
+        for testing purposes
+
+        Parameters
+        ----------
+        Xt : cupy.ndarray(2)
+            Interim sample Xₜ at test time t
+        or
+        Xt_r : cupy.ndarray(1)
+            Interim sample Xₜ at test time t only dim = r
+
+        Returns
+        -------
+        mu_2 : cupy.ndarray(2)
+            𝛍₂, Mean of whole population in posterior distribution 𝚫|Xₜ
+        mu_2p : cupy.ndarray(2)
+            𝛍₂ʹ, Mean of subgroup population in posterior distribution 𝚫|Xₜ
+        p_2 : float
+            The posterior probability of a subgroup effect existing         
+        &#34;&#34;&#34;
+        if self.degenerate is None:
+            ASigma0invXt = self.__A @ self.__Sigma_0Inv @ Xt
+            mu_2 = cp.dot(
+                self.Sigma_2,
+                self.__Sigma_1Inv @ self.mu_1 + ASigma0invXt)
+            mu_2p = cp.dot(
+                self.Sigma_2,
+                self.__Sigma_1Inv @ self.mu_1p + ASigma0invXt)
+            if self.r == 1:  ###################################################################### non-singularity
+                mu_2 = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t),
+                                 (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[1]) / (
+                                         1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+                mu_2p = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t),
+                                  (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[
+                                      1]) / (
+                                          1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+            # Xₜ if subgroup effect = true
+            f1_Xt = pdf2D(self.mu_3p, ensure_positive_definite(self.Sigma_3), Xt)
+            # Xₜ if subgroup effect = false
+            f0_Xt = pdf2D(self.mu_3, ensure_positive_definite(self.Sigma_3), Xt)
+
+            # Compute p₂
+            p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+        elif Xt.shape == (2,):  # Check if Xt has 2 elements (i.e., shape (2,))
+            Xit = Xt[1 - int(self.degenerate)]
+            if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)  # only care about X1t
+                # Xₜ if subgroup effect = false
+                f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xit)
+
+                # Compute p₂
+                p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+
+            elif self.degenerate == 1:
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xit) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t)  # only care about X2t
+                mu_2p = mu_2
+                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)  # only care about X1t
+                # Xₜ if subgroup effect = false
+                f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xit)
+
+                # Compute p₂
+                p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+                # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D 
+            else:
+                print(&#34;Check degeneration&#34;)
+        else:
+            if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+                mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt) / (
+                        1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+                # Xₜ if subgroup effect = true
+                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xt)  # only care about X1t
+                # Xₜ if subgroup effect = false
+                f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xt)
+
+                # Compute p₂
+                p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+
+            elif self.degenerate == 1:
+                mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt) / (
+                        1 + self.Sigma1_coeff * self.Is * self.t)
+                mu_2p = mu_2
+
+                f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xt)  # only care about X1t
+                # Xₜ if subgroup effect = false
+                f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xt)
+
+                # Compute p₂
+                p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+                # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D 
+            else:
+                print(&#34;Check degeneration&#34;)
+        return mu_2, mu_2p, p_2
+
+    def ensure_positive_definite(matrix, jitter=1e-6):
+        xp = cp.get_array_module(matrix)
+        return matrix + xp.eye(matrix.shape[0]) * jitter</code></pre>
+</details>
+<div class="desc"><p>Takes input parameters and calculates new parameters and random samples for:
+1) a prior distribution of drug efficacy 𝚫,
+2) a posterior distribution based on the prior distribution 𝚫|Xₜ, and
+3) a marginal interim distribution at t, Xₜ</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>t</code></strong> :&ensp;<code>float</code></dt>
+<dd>The point in the trial the test takes place, "time"
+Input parameter
+(default is 0.5)</dd>
+<dt><strong><code>r</code></strong> :&ensp;<code>float</code></dt>
+<dd>Subgroup proportion vs whole
+Input parameter
+(default is 0.5)</dd>
+<dt><strong><code>Is</code></strong> :&ensp;<code>float</code></dt>
+<dd>Total number of information units
+Input parameter
+(default is 211)</dd>
+<dt><strong><code>p_1</code></strong> :&ensp;<code>float</code></dt>
+<dd>The prior probability of a subgroup effect existing
+Input parameter
+(default is 0.75)</dd>
+<dt><strong><code>delta</code></strong> :&ensp;<code>float</code></dt>
+<dd>The mean of drug efficacy in the entire population
+Input parameter</dd>
+<dt><strong><code>d</code></strong> :&ensp;<code>float</code></dt>
+<dd>The degree of additional subgroup effect
+Input parameter</dd>
+<dt><strong><code>Sigma_0</code></strong> :&ensp;<code>cupy.ndarray(2,2)</code></dt>
+<dd>The covariance matrix of the distribution</dd>
+<dt><strong><code>Sigma_1</code></strong> :&ensp;<code>cupy.ndarray(2,2)</code></dt>
+<dd>The covariance matrix of the prior distribution
+Can either be defined as an input parameter
+or generated from Sigma_0 using an input coefficient</dd>
+<dt><strong><code>Sigma_2</code></strong> :&ensp;<code>cupy.ndarray(2,2)</code></dt>
+<dd>The covariance matrix of generated posterior distributions</dd>
+<dt><strong><code>Sigma_3</code></strong> :&ensp;<code>cupy.ndarray(2,2)</code></dt>
+<dd>The covariance matrix of the marginal interim distribution</dd>
+<dt><strong><code>mu_1</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>The mean efficacy on the entire population, generated from input delta</dd>
+<dt><strong><code>mu_1p</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>The mean efficacy on the subgroup, generated from a combination of inputs delta and d</dd>
+<dt><strong><code>mu_3</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>The mean efficacy on the entire population in the interim distribution</dd>
+<dt><strong><code>mu_3p</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>The mean efficacy on the subgroup population in the interim distribution</dd>
+<dt><strong><code>degenerate</code></strong> :&ensp;<code>integer</code></dt>
+<dd>none if the model is non-degenerate
+0 if the model only considers subgroup
+1 if the model only considers whole population</dd>
+</dl>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>self</code></strong></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>t</code></strong> :&ensp;<code>float</code></dt>
+<dd>The point in the trial the test takes place
+(default is 0.5)</dd>
+<dt><strong><code>r</code></strong> :&ensp;<code>float</code></dt>
+<dd>Subgroup proportion vs whole
+(default is 0.5)</dd>
+<dt><strong><code>Is</code></strong> :&ensp;<code>float</code></dt>
+<dd>Total number of information units
+(default is 211)</dd>
+<dt><strong><code>p_1</code></strong> :&ensp;<code>float</code></dt>
+<dd>The prior probability of a subgroup effect existing
+(default is 0.75)</dd>
+<dt><strong><code>delta</code></strong> :&ensp;<code>float</code></dt>
+<dd>The mean of drug efficacy in the entire population</dd>
+<dt><strong><code>d</code></strong> :&ensp;<code>float</code></dt>
+<dd>The degree of additional subgroup effect</dd>
+<dt><strong><code>Sigma_1</code></strong> :&ensp;<code>cupy.ndarray(2,2)</code>, optional</dt>
+<dd>The covariance matrix of the prior distribution
+If left as None, the constructor will use Sigma1_coeff * Sigma_0 instead
+(default is None)</dd>
+<dt><strong><code>Sigma1_coeff</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>The coefficient in Sigma_1 = Sigma1_coeff * Sigma_0
+(default is 0.01)</dd>
+<dt><strong><code>random_seed</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Seed for random number generator
+Set the seed for reproducible results
+(default is 101)</dd>
+<dt><strong><code>degenerate</code></strong> :&ensp;<code>integer</code></dt>
+<dd>none if the model is non-degenerate
+0 if the model only considers subgroup
+1 if the model only considers whole population</dd>
+</dl></div>
+<h3>Methods</h3>
+<dl>
+<dt id="gbayesdesign.BayesSampler.BayesSampler.ensure_positive_definite"><code class="name flex">
+<span>def <span class="ident">ensure_positive_definite</span></span>(<span>matrix, jitter=1e-06)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ensure_positive_definite(matrix, jitter=1e-6):
+    xp = cp.get_array_module(matrix)
+    return matrix + xp.eye(matrix.shape[0]) * jitter</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="gbayesdesign.BayesSampler.BayesSampler.get_posteriorVar"><code class="name flex">
+<span>def <span class="ident">get_posteriorVar</span></span>(<span>self, Xt)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_posteriorVar(self, Xt):
+    &#34;&#34;&#34;
+    Returns the values of mu_2, mu_2 and p_2 given Xt,
+    for testing purposes
+
+    Parameters
+    ----------
+    Xt : cupy.ndarray(2)
+        Interim sample Xₜ at test time t
+    or
+    Xt_r : cupy.ndarray(1)
+        Interim sample Xₜ at test time t only dim = r
+
+    Returns
+    -------
+    mu_2 : cupy.ndarray(2)
+        𝛍₂, Mean of whole population in posterior distribution 𝚫|Xₜ
+    mu_2p : cupy.ndarray(2)
+        𝛍₂ʹ, Mean of subgroup population in posterior distribution 𝚫|Xₜ
+    p_2 : float
+        The posterior probability of a subgroup effect existing         
+    &#34;&#34;&#34;
+    if self.degenerate is None:
+        ASigma0invXt = self.__A @ self.__Sigma_0Inv @ Xt
+        mu_2 = cp.dot(
+            self.Sigma_2,
+            self.__Sigma_1Inv @ self.mu_1 + ASigma0invXt)
+        mu_2p = cp.dot(
+            self.Sigma_2,
+            self.__Sigma_1Inv @ self.mu_1p + ASigma0invXt)
+        if self.r == 1:  ###################################################################### non-singularity
+            mu_2 = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
+                    1 + self.Sigma1_coeff * self.Is * self.t),
+                             (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[1]) / (
+                                     1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+            mu_2p = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
+                    1 + self.Sigma1_coeff * self.Is * self.t),
+                              (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[
+                                  1]) / (
+                                      1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+        # Xₜ if subgroup effect = true
+        f1_Xt = pdf2D(self.mu_3p, ensure_positive_definite(self.Sigma_3), Xt)
+        # Xₜ if subgroup effect = false
+        f0_Xt = pdf2D(self.mu_3, ensure_positive_definite(self.Sigma_3), Xt)
+
+        # Compute p₂
+        p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+    elif Xt.shape == (2,):  # Check if Xt has 2 elements (i.e., shape (2,))
+        Xit = Xt[1 - int(self.degenerate)]
+        if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+            mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                    1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+            mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                    1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+            f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)  # only care about X1t
+            # Xₜ if subgroup effect = false
+            f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xit)
+
+            # Compute p₂
+            p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+
+        elif self.degenerate == 1:
+            mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xit) / (
+                    1 + self.Sigma1_coeff * self.Is * self.t)  # only care about X2t
+            mu_2p = mu_2
+            f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)  # only care about X1t
+            # Xₜ if subgroup effect = false
+            f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xit)
+
+            # Compute p₂
+            p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+            # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D 
+        else:
+            print(&#34;Check degeneration&#34;)
+    else:
+        if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+            mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt) / (
+                    1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+            mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt) / (
+                    1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+            # Xₜ if subgroup effect = true
+            f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xt)  # only care about X1t
+            # Xₜ if subgroup effect = false
+            f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xt)
+
+            # Compute p₂
+            p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+
+        elif self.degenerate == 1:
+            mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt) / (
+                    1 + self.Sigma1_coeff * self.Is * self.t)
+            mu_2p = mu_2
+
+            f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xt)  # only care about X1t
+            # Xₜ if subgroup effect = false
+            f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xt)
+
+            # Compute p₂
+            p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+            # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D 
+        else:
+            print(&#34;Check degeneration&#34;)
+    return mu_2, mu_2p, p_2</code></pre>
+</details>
+<div class="desc"><p>Returns the values of mu_2, mu_2 and p_2 given Xt,
+for testing purposes</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>Xt</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>Interim sample Xₜ at test time t</dd>
+<dt><strong><code>or</code></strong></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>Xt_r</code></strong> :&ensp;<code>cupy.ndarray(1)</code></dt>
+<dd>Interim sample Xₜ at test time t only dim = r</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>mu_2</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>𝛍₂, Mean of whole population in posterior distribution 𝚫|Xₜ</dd>
+<dt><strong><code>mu_2p</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>𝛍₂ʹ, Mean of subgroup population in posterior distribution 𝚫|Xₜ</dd>
+<dt><strong><code>p_2</code></strong> :&ensp;<code>float</code></dt>
+<dd>The posterior probability of a subgroup effect existing</dd>
+</dl></div>
+</dd>
+<dt id="gbayesdesign.BayesSampler.BayesSampler.sample_Delta"><code class="name flex">
+<span>def <span class="ident">sample_Delta</span></span>(<span>self, N=10000)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sample_Delta(self, N=10000):
+    &#34;&#34;&#34;Return N samples from the prior distribution 𝚫&#34;&#34;&#34;
+    pvals = cp.array([1 - self.p_1, self.p_1])
+    rs = rndgenerator.get_random_state()
+    if self.degenerate is None:
+        choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+        prior_samples = rs.multivariate_normal(self.mu_1p, ensure_positive_definite(self.Sigma_1),
+                                               size=N) * choices + \
+                        rs.multivariate_normal(self.mu_1, ensure_positive_definite(self.Sigma_1), size=N) * (
+                                    1 - choices)
+    else:
+        if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+            choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+            N_array = rs.normal((self.delta), 1, size=N).reshape(-1, 1)
+            Np_array = rs.normal((self.delta + self.d), 1, size=N).reshape(-1, 1)
+            prior_samples = ((1 - choices) * N_array + choices * Np_array).flatten()
+        elif self.degenerate == 1:
+            prior_samples = rs.normal((self.delta), 1, size=N)
+            # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D
+    return prior_samples</code></pre>
+</details>
+<div class="desc"><p>Return N samples from the prior distribution 𝚫</p></div>
+</dd>
+<dt id="gbayesdesign.BayesSampler.BayesSampler.sample_Delta_posterior"><code class="name flex">
+<span>def <span class="ident">sample_Delta_posterior</span></span>(<span>self, Xt, N=10000)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sample_Delta_posterior(self, Xt, N=10000):
+    &#34;&#34;&#34;
+    Returns N samples of posterior distribution 𝚫|Xₜ, given a sample Xₜ
+
+    Parameters
+    ----------
+    Xt : cupy.ndarray(2)
+        Interim sample
+    N : int, optional
+        Number of samples to return
+        (default is 10000)
+    &#34;&#34;&#34;
+    rs = rndgenerator.get_random_state()
+    if self.degenerate is None:
+        ASigma0invXt = self.__A @ self.__Sigma_0Inv @ Xt
+        mu_2 = self.Sigma_2 @ ((self.__Sigma_1Inv @ self.mu_1) + ASigma0invXt)
+        mu_2p = self.Sigma_2 @ ((self.__Sigma_1Inv @ self.mu_1p) + ASigma0invXt)
+        if self.r == 1:  ###################################################################### non-singularity
+            mu_2 = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
+                    1 + self.Sigma1_coeff * self.Is * self.t),
+                             (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[1]) / (
+                                     1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+            mu_2p = cp.array([(self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xt[0]) / (
+                    1 + self.Sigma1_coeff * self.Is * self.t),
+                              (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xt[
+                                  1]) / (
+                                      1 + self.Sigma1_coeff * self.r * self.Is * self.t)])
+        # Compute p₂
+        f1_Xt = pdf2D(self.mu_3p, ensure_positive_definite(self.Sigma_3), Xt)  # Xₜ if subgroup effect = true
+        f0_Xt = pdf2D(self.mu_3, ensure_positive_definite(self.Sigma_3), Xt)  # Xₜ if subgroup effect = false
+        p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+
+        pvals = cp.array([1 - p_2, p_2])
+        rs = rndgenerator.get_random_state()
+        choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+        self.Delta_choices = choices.get()
+        # posterior_samples = rs.multivariate_normal(mu_2p, self.Sigma_2, size=N) * choices + \
+        #                     rs.multivariate_normal(mu_2, self.Sigma_2, size=N) * (1 - choices)
+        posterior_samples = rs.multivariate_normal(mu_2p, ensure_positive_definite(self.Sigma_2),
+                                                   size=N) * choices + \
+                            rs.multivariate_normal(mu_2, ensure_positive_definite(self.Sigma_2), size=N) * (
+                                        1 - choices)
+    elif Xt.shape == (2,):  # Check if Xt has 2 elements (i.e., shape (2,))
+        Xit = Xt[1 - int(self.degenerate)]  # s.t., when self.degenerate=0, Xit = Xt[1] for subgroup model
+        if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+            # Xₜ if subgroup effect = true
+            f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)
+            # Xₜ if subgroup effect = false
+            f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xit)
+
+            # Compute p₂
+            p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+
+            pvals = cp.array([1 - p_2, p_2])
+            rs = rndgenerator.get_random_state()
+            choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+            mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                    1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+            mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                    1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+
+            N_array = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
+            Np_array = rs.normal(mu_2p, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
+            posterior_samples = ((1 - choices) * N_array + choices * Np_array).flatten()
+
+        elif self.degenerate == 1:
+            rs = rndgenerator.get_random_state()
+            mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xit) / (
+                    1 + self.Sigma1_coeff * self.Is * self.t)
+            posterior_samples = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N)
+            # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D
+    else:  # Check if Xt has only 1 elements (i.e., shape (1,))
+        Xit = Xt
+        if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+            # Xₜ if subgroup effect = true
+            f1_Xt = pdf1D(self.mu_3p, self.Sigma_3, Xit)
+            # Xₜ if subgroup effect = false
+            f0_Xt = pdf1D(self.mu_3, self.Sigma_3, Xit)
+
+            # Compute p₂
+            p_2 = self.p_1 * f1_Xt / (self.p_1 * f1_Xt + (1 - self.p_1) * f0_Xt)
+
+            pvals = cp.array([1 - p_2, p_2])
+            rs = rndgenerator.get_random_state()
+            choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+            mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                    1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+            mu_2p = (self.delta + self.d + self.Sigma1_coeff * cp.sqrt(self.r * self.Is * self.t) * Xit) / (
+                    1 + self.Sigma1_coeff * self.r * self.Is * self.t)
+
+            N_array = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
+            Np_array = rs.normal(mu_2p, cp.sqrt(self.Sigma_2), size=N).reshape(-1, 1)
+            posterior_samples = ((1 - choices) * N_array + choices * Np_array).flatten()
+
+        elif self.degenerate == 1:
+            rs = rndgenerator.get_random_state()
+            mu_2 = (self.delta + self.Sigma1_coeff * cp.sqrt(self.Is * self.t) * Xit) / (
+                    1 + self.Sigma1_coeff * self.Is * self.t)
+            posterior_samples = rs.normal(mu_2, cp.sqrt(self.Sigma_2), size=N)
+            # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D
+    return posterior_samples</code></pre>
+</details>
+<div class="desc"><p>Returns N samples of posterior distribution 𝚫|Xₜ, given a sample Xₜ</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>Xt</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>Interim sample</dd>
+<dt><strong><code>N</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of samples to return
+(default is 10000)</dd>
+</dl></div>
+</dd>
+<dt id="gbayesdesign.BayesSampler.BayesSampler.sample_Xt"><code class="name flex">
+<span>def <span class="ident">sample_Xt</span></span>(<span>self, N=10000)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sample_Xt(self, N=10000):
+    &#34;&#34;&#34;
+    Return N samples of marginal interim distribution Xₜ|i
+    conditional on whether subgroup effect i exists
+    (independent of drug efficacy)
+    &#34;&#34;&#34;
+    if self.degenerate is None:
+        pvals = cp.array([1 - self.p_1, self.p_1])
+        rs = rndgenerator.get_random_state()
+        choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+        XtMarginal_samples = rs.multivariate_normal(self.mu_3, ensure_positive_definite(self.Sigma_3), size=N) * (
+                    1 - choices) + \
+                             rs.multivariate_normal(self.mu_3p, ensure_positive_definite(self.Sigma_3),
+                                                    size=N) * choices
+        self.xt_choices = choices.get()
+    else:
+        # 1D
+        rs = rndgenerator.get_random_state()  # &lt;- add here
+        if self.degenerate == 0:  # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; 1D
+            pvals = cp.array([1 - self.p_1, self.p_1])
+            rs = rndgenerator.get_random_state()
+            choices = rs.choice(2, p=pvals, size=N).reshape(-1, 1)
+            N_array = rs.normal(self.mu_3, cp.sqrt(self.Sigma_3), size=N).reshape(-1, 1)
+            Np_array = rs.normal(self.mu_3p, cp.sqrt(self.Sigma_3), size=N).reshape(-1, 1)
+            XtMarginal_samples = ((1 - choices) * N_array + choices * Np_array).flatten()
+        elif self.degenerate == 1:
+            XtMarginal_samples = rs.normal(self.mu_3, cp.sqrt(self.Sigma_3), size=N)
+        # &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1D
+
+    return XtMarginal_samples</code></pre>
+</details>
+<div class="desc"><p>Return N samples of marginal interim distribution Xₜ|i
+conditional on whether subgroup effect i exists
+(independent of drug efficacy)</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="gbayesdesign" href="index.html">gbayesdesign</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="gbayesdesign.BayesSampler.BayesSampler" href="#gbayesdesign.BayesSampler.BayesSampler">BayesSampler</a></code></h4>
+<ul class="">
+<li><code><a title="gbayesdesign.BayesSampler.BayesSampler.ensure_positive_definite" href="#gbayesdesign.BayesSampler.BayesSampler.ensure_positive_definite">ensure_positive_definite</a></code></li>
+<li><code><a title="gbayesdesign.BayesSampler.BayesSampler.get_posteriorVar" href="#gbayesdesign.BayesSampler.BayesSampler.get_posteriorVar">get_posteriorVar</a></code></li>
+<li><code><a title="gbayesdesign.BayesSampler.BayesSampler.sample_Delta" href="#gbayesdesign.BayesSampler.BayesSampler.sample_Delta">sample_Delta</a></code></li>
+<li><code><a title="gbayesdesign.BayesSampler.BayesSampler.sample_Delta_posterior" href="#gbayesdesign.BayesSampler.BayesSampler.sample_Delta_posterior">sample_Delta_posterior</a></code></li>
+<li><code><a title="gbayesdesign.BayesSampler.BayesSampler.sample_Xt" href="#gbayesdesign.BayesSampler.BayesSampler.sample_Xt">sample_Xt</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

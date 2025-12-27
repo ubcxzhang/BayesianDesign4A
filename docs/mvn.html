@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>gbayesdesign.mvn API documentation</title>
+<meta name="description" content="mvn.py …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>gbayesdesign.mvn</code></h1>
+</header>
+<section id="section-intro">
+<p>mvn.py</p>
+<p>A GPU-accelerated 2D Multivariate Normal PDF and CDF implementation in CuPy.</p>
+<h2 id="references">References</h2>
+<p>Alan Genz, Numerical Computation of Multivariate Normal Probabilities,
+Journal of Computational and Graphical Statistics,
+Jun 1992, Vol. 1, No. 2, pp. 141-149</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="gbayesdesign.mvn.cdf1D"><code class="name flex">
+<span>def <span class="ident">cdf1D</span></span>(<span>x, mean=0.0, std=1)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cdf1D(x,mean=0.0,std=1):
+    &#34;&#34;&#34;
+    Returns the CDF for a 1D normal distribution at x  - a single real number.
+
+    Parameters
+    ----------
+    x : cupy.ndarray(2)
+        Point in the function measured
+    mean : float
+        The mean of the normal distribution (default is 0)
+    std : 1
+        The standard deviation of the normal distribution
+    &#34;&#34;&#34;
+    return 0.5*(1. + special.erf((x-mean)*cp.reciprocal(std)/cp.sqrt(2.)))</code></pre>
+</details>
+<div class="desc"><p>Returns the CDF for a 1D normal distribution at x
+- a single real number.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>Point in the function measured</dd>
+<dt><strong><code>mean</code></strong> :&ensp;<code>float</code></dt>
+<dd>The mean of the normal distribution (default is 0)</dd>
+<dt><strong><code>std</code></strong> :&ensp;<code>1</code></dt>
+<dd>The standard deviation of the normal distribution</dd>
+</dl></div>
+</dd>
+<dt id="gbayesdesign.mvn.cdf2DLattice"><code class="name flex">
+<span>def <span class="ident">cdf2DLattice</span></span>(<span>sigma=array([[1., 0.],
+[0., 1.]]),<br>ub=array([inf, inf]),<br>Nmax=50000,<br>lattice_points=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cdf2DLattice(sigma=cp.eye(2),ub=cp.array([+cp.inf,+cp.inf]), 
+        Nmax=50000, lattice_points=None):
+    &#34;&#34;&#34;
+    Returns a multivariate MVN CDF at a single point
+    
+    References
+    ----------
+    Alan Genz algorithm customized for 2D case
+    Journal of Computational and Graphical Statistics, 
+    Jun 1992, Vol. 1, No. 2, pp. 141-149
+
+    Parameters
+    ----------
+    sigma : cupy.ndarray(2,2)
+        The covariance matrix of the normal distribution
+    ub : cupy.ndarray(2)
+        &#34;Upper Bound&#34;. Point in the function measured 
+        (default is [cupy.inf, cupy.inf])
+    Nmax: int
+        (default is 50000)
+    lattice_points: cupy.ndarray(Nmax)
+        vector of lattice points used for QMC method
+    &#34;&#34;&#34;
+    # Cholesky decomposition of sigma:
+    C = cp.zeros((2,2))
+    
+    fsigma = sigma.copy()
+    b = ub.copy()
+    
+    # Flip the bounds if the inner integration interval is small
+    if b[0] &gt; b[1]:
+        fsigma[0,0] = sigma[1,1]
+        fsigma[1,1] = sigma[0,0]
+        b[0] = ub[1]
+        b[1] = ub[0]
+    C[0,0] = cp.sqrt(fsigma[0, 0]); C[1,0]=fsigma[1, 0]/cp.sqrt(fsigma[0, 0]);
+    C[1,1] = cp.sqrt(fsigma[1, 1]-fsigma[1, 0]**2/fsigma[0, 0])
+    e0 = 1.
+    if cp.isfinite(b[0]):
+        e0 = cdf1D(b[0]/C[0,0])
+    
+    y0vec = icdf1D(lattice_points*e0)
+    e1vec = cp.ones(Nmax)
+    if cp.isfinite(b[1]):
+        e1vec = cdf1D((b[1]-C[1,0]*y0vec)/C[1,1])
+    return e0 * e1vec.mean()</code></pre>
+</details>
+<div class="desc"><p>Returns a multivariate MVN CDF at a single point</p>
+<h2 id="references">References</h2>
+<p>Alan Genz algorithm customized for 2D case
+Journal of Computational and Graphical Statistics,
+Jun 1992, Vol. 1, No. 2, pp. 141-149</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>sigma</code></strong> :&ensp;<code>cupy.ndarray(2,2)</code></dt>
+<dd>The covariance matrix of the normal distribution</dd>
+<dt><strong><code>ub</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>"Upper Bound". Point in the function measured
+(default is [cupy.inf, cupy.inf])</dd>
+<dt><strong><code>Nmax</code></strong> :&ensp;<code>int</code></dt>
+<dd>(default is 50000)</dd>
+<dt><strong><code>lattice_points</code></strong> :&ensp;<code>cupy.ndarray(Nmax)</code></dt>
+<dd>vector of lattice points used for QMC method</dd>
+</dl></div>
+</dd>
+<dt id="gbayesdesign.mvn.icdf1D"><code class="name flex">
+<span>def <span class="ident">icdf1D</span></span>(<span>x, mean=0.0, std=1.0)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@cp.fuse
+def icdf1D(x,mean=0.0,std=1.):
+    &#34;&#34;&#34;
+    Returns the inverse CDF for a 2D multivariate normal distribution at x.
+
+    Parameters
+    ----------
+    x : cupy.ndarray(2)
+        Point in the function measured
+    mean : float
+        The mean of the normal distribution (default is 0)
+    std : 1
+        The standard deviation of the normal distribution
+    &#34;&#34;&#34;
+    return mean + std * special.erfinv(2. * x - 1.) * cp.sqrt(2.)</code></pre>
+</details>
+<div class="desc"><p>Returns the inverse CDF for a 2D multivariate normal distribution at x.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>Point in the function measured</dd>
+<dt><strong><code>mean</code></strong> :&ensp;<code>float</code></dt>
+<dd>The mean of the normal distribution (default is 0)</dd>
+<dt><strong><code>std</code></strong> :&ensp;<code>1</code></dt>
+<dd>The standard deviation of the normal distribution</dd>
+</dl></div>
+</dd>
+<dt id="gbayesdesign.mvn.pdf1D"><code class="name flex">
+<span>def <span class="ident">pdf1D</span></span>(<span>mu, Sigma, x)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pdf1D(mu, Sigma, x):
+    &#34;&#34;&#34;
+    Returns the value of the PDF for a 1D normal distribution at x.
+
+    Parameters
+    ----------
+    mu : float
+        The mean of the normal distribution.
+    Sigma : float
+        The variance of the normal distribution (sigma^2).
+    x : float
+        Point in the function to be measured.
+    &#34;&#34;&#34;
+    # Compute the deviation from the mean
+    x_mu = x - mu
+
+    # Compute the PDF of the 1D normal distribution
+    return (1.0 / cp.sqrt(2 * cp.pi * Sigma)) * cp.exp(-0.5 * (x_mu ** 2) / Sigma)</code></pre>
+</details>
+<div class="desc"><p>Returns the value of the PDF for a 1D normal distribution at x.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>mu</code></strong> :&ensp;<code>float</code></dt>
+<dd>The mean of the normal distribution.</dd>
+<dt><strong><code>Sigma</code></strong> :&ensp;<code>float</code></dt>
+<dd>The variance of the normal distribution (sigma^2).</dd>
+<dt><strong><code>x</code></strong> :&ensp;<code>float</code></dt>
+<dd>Point in the function to be measured.</dd>
+</dl></div>
+</dd>
+<dt id="gbayesdesign.mvn.pdf2D"><code class="name flex">
+<span>def <span class="ident">pdf2D</span></span>(<span>mu, Sigma, x)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pdf2D(mu, Sigma, x):
+    &#34;&#34;&#34;
+    Returns the value of the PDF for a 2D multivariate normal distribution at x.
+
+    Parameters
+    ----------
+    mu : cupy.ndarray(2)
+        The mean of the normal distribution
+    Sigma : cupy.ndarray(2,2)
+        The covariance matrix of the normal distribution
+    x : cupy.ndarray(2)
+        Point in the function to be measured
+    &#34;&#34;&#34;
+    det_Sigma = Sigma[0,0]*Sigma[1,1]-Sigma[0,1]**2
+    inv_Sigma = -Sigma.copy()                                   # inv_Sigma = -Sigma  
+    inv_Sigma[0,0] = Sigma[1,1]
+    inv_Sigma[1,1] = Sigma[0,0]
+    inv_Sigma = inv_Sigma/det_Sigma
+    x_mu = x-mu
+    return 0.5*cp.exp(-0.5*x_mu.T@inv_Sigma@x_mu)/(cp.pi*cp.sqrt(cp.abs(det_Sigma)))</code></pre>
+</details>
+<div class="desc"><p>Returns the value of the PDF for a 2D multivariate normal distribution at x.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>mu</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>The mean of the normal distribution</dd>
+<dt><strong><code>Sigma</code></strong> :&ensp;<code>cupy.ndarray(2,2)</code></dt>
+<dd>The covariance matrix of the normal distribution</dd>
+<dt><strong><code>x</code></strong> :&ensp;<code>cupy.ndarray(2)</code></dt>
+<dd>Point in the function to be measured</dd>
+</dl></div>
+</dd>
+<dt id="gbayesdesign.mvn.redVecCDF2DLattice"><code class="name flex">
+<span>def <span class="ident">redVecCDF2DLattice</span></span>(<span>sigma=array([[1., 0.],
+[0., 1.]]),<br>ub=array([[inf, inf]]),<br>Nmax=5000,<br>slice_size=5000,<br>lattice_points=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def redVecCDF2DLattice(sigma=cp.eye(2),ub=cp.array([[+cp.inf,+cp.inf]]), 
+                       Nmax=5000, slice_size=5000,lattice_points=None):
+    &#34;&#34;&#34;
+    Vectorized multivariate MVN CDF calculation.
+
+    Parameters
+    ----------
+    sigma : cupy.ndarray(2,2)
+        The covariance matrix of the normal distribution
+    ub : cupy.ndarray(N_DeltaXt, 2)
+        &#34;Upper Bound&#34;. An array of points in the function to measure and average. 
+        (default is [N_DeltaXt][cupy.inf, cupy.inf])
+    Nmax: int
+        (default is 5000)
+    slice_size: int
+        (default is 5000)
+    lattice_points: cupy.ndarray(Nmax)
+        vector of lattice points used for QMC method
+    &#34;&#34;&#34;
+    # Cholesky decomposition of sigma:
+    C = cp.zeros((2,2))
+    C[0,0] = cp.sqrt(sigma[0, 0]); C[1,0]=sigma[1, 0]/cp.sqrt(sigma[0, 0]);
+    C[1,1] = cp.sqrt(sigma[1, 1]-sigma[1, 0]**2/sigma[0, 0])
+    # print(C)
+    #########################Not a correctness bug, but better practice:####################
+    # e0 = cp.ndarray(slice_size)  # the inf ones are set to 1
+    # b = cp.ndarray(slice_size)
+    # e1vec = cp.ndarray((Nmax,slice_size))
+    
+    e0 = cp.empty(slice_size)
+    b  = cp.empty(slice_size)
+    e1vec = cp.empty((Nmax, slice_size))
+    ########################################################################################
+    
+    n_pts = ub.shape[0]//slice_size*slice_size
+    res = cp.zeros(n_pts) # final results - only the multiple slices of points is considered
+    for sl in range(0,n_pts,slice_size):
+        slend = sl+slice_size # slice end idx
+        b = ub[sl:slend,0]
+        e0 = cdf1D(b/C[0,0])   
+        y0vec = icdf1D(lattice_points*e0) #icdf1D(d0+lattice_points*f0)
+        b = ub[sl:slend,1]
+        e1vec = cdf1D((b-C[1,0]*y0vec)/C[1,1])
+        res[sl:slend] = e0*e1vec.mean(axis=0) #f0y
+        # print(e0,y0vec,e1vec)
+    return res.mean()</code></pre>
+</details>
+<div class="desc"><p>Vectorized multivariate MVN CDF calculation.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>sigma</code></strong> :&ensp;<code>cupy.ndarray(2,2)</code></dt>
+<dd>The covariance matrix of the normal distribution</dd>
+<dt><strong><code>ub</code></strong> :&ensp;<code>cupy.ndarray(N_DeltaXt, 2)</code></dt>
+<dd>"Upper Bound". An array of points in the function to measure and average.
+(default is [N_DeltaXt][cupy.inf, cupy.inf])</dd>
+<dt><strong><code>Nmax</code></strong> :&ensp;<code>int</code></dt>
+<dd>(default is 5000)</dd>
+<dt><strong><code>slice_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>(default is 5000)</dd>
+<dt><strong><code>lattice_points</code></strong> :&ensp;<code>cupy.ndarray(Nmax)</code></dt>
+<dd>vector of lattice points used for QMC method</dd>
+</dl></div>
+</dd>
+<dt id="gbayesdesign.mvn.van_der_corput"><code class="name flex">
+<span>def <span class="ident">van_der_corput</span></span>(<span>n: int, base=2, start_index=0, scramble=False, seed=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def van_der_corput(n: int, base=2, start_index=0, scramble=False, seed=None):
+    &#34;&#34;&#34;
+    A van der Corput sequence generator for use in the Quasi Monte Carlo lattice method.
+
+    Parameters
+    ----------
+    n : int
+        Length of generated sequence
+    base : int, optional
+        (default is 2)
+    start_index : int, optional
+        What index to start generating at
+        (default is 0)
+    scramble : bool, optional
+        Whether the order of the returned sequence should be randomized
+        (default is False)
+    seed : int, optional
+        (default is None)
+    &#34;&#34;&#34;
+    rndgenerator.seed(seed)
+    rs = rndgenerator.get_random_state()
+    sequence = cp.zeros(n)
+
+    quotient = cp.arange(start_index, start_index + n)
+    b2r = 1 / base
+    while (1 - b2r) &lt; 1:
+        remainder = quotient % base
+        if scramble:
+            # permutation must be the same for all points of the sequence
+            perm = rs.permutation(base)
+            remainder = perm[cp.array(remainder).astype(int)]
+        sequence += remainder * b2r
+        b2r /= base
+        quotient = (quotient - remainder) / base
+    return sequence</code></pre>
+</details>
+<div class="desc"><p>A van der Corput sequence generator for use in the Quasi Monte Carlo lattice method.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>n</code></strong> :&ensp;<code>int</code></dt>
+<dd>Length of generated sequence</dd>
+<dt><strong><code>base</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>(default is 2)</dd>
+<dt><strong><code>start_index</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>What index to start generating at
+(default is 0)</dd>
+<dt><strong><code>scramble</code></strong> :&ensp;<code>bool</code>, optional</dt>
+<dd>Whether the order of the returned sequence should be randomized
+(default is False)</dd>
+<dt><strong><code>seed</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>(default is None)</dd>
+</dl></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="gbayesdesign" href="index.html">gbayesdesign</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="gbayesdesign.mvn.cdf1D" href="#gbayesdesign.mvn.cdf1D">cdf1D</a></code></li>
+<li><code><a title="gbayesdesign.mvn.cdf2DLattice" href="#gbayesdesign.mvn.cdf2DLattice">cdf2DLattice</a></code></li>
+<li><code><a title="gbayesdesign.mvn.icdf1D" href="#gbayesdesign.mvn.icdf1D">icdf1D</a></code></li>
+<li><code><a title="gbayesdesign.mvn.pdf1D" href="#gbayesdesign.mvn.pdf1D">pdf1D</a></code></li>
+<li><code><a title="gbayesdesign.mvn.pdf2D" href="#gbayesdesign.mvn.pdf2D">pdf2D</a></code></li>
+<li><code><a title="gbayesdesign.mvn.redVecCDF2DLattice" href="#gbayesdesign.mvn.redVecCDF2DLattice">redVecCDF2DLattice</a></code></li>
+<li><code><a title="gbayesdesign.mvn.van_der_corput" href="#gbayesdesign.mvn.van_der_corput">van_der_corput</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

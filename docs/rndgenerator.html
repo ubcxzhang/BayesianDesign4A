@@ -1,0 +1,3153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>gbayesdesign.rndgenerator API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>gbayesdesign.rndgenerator</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="gbayesdesign.rndgenerator.get_random_state"><code class="name flex">
+<span>def <span class="ident">get_random_state</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_random_state():
+    &#34;&#34;&#34;Gets the state of the random number generator for the current device.
+
+    If the state for the current device is not created yet, this function
+    creates a new one, initializes it, and stores it as the state for the
+    current device.
+
+    Returns:
+        RandomState: The state of the random number generator for the
+        device.
+
+    &#34;&#34;&#34;
+    dev = cuda.Device()
+    rs = _random_states.get(dev.id, None)
+    if rs is None:
+        seed = os.getenv(&#39;CUPY_SEED&#39;)
+        if seed is not None:
+            seed = numpy.uint64(int(seed))
+        rs = RandomState(seed)
+        rs = _random_states.setdefault(dev.id, rs)
+    return rs</code></pre>
+</details>
+<div class="desc"><p>Gets the state of the random number generator for the current device.</p>
+<p>If the state for the current device is not created yet, this function
+creates a new one, initializes it, and stores it as the state for the
+current device.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code><a title="gbayesdesign.rndgenerator.RandomState" href="#gbayesdesign.rndgenerator.RandomState">RandomState</a></code></dt>
+<dd>The state of the random number generator for the</dd>
+</dl>
+<p>device.</p></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.reset_random_state"><code class="name flex">
+<span>def <span class="ident">reset_random_state</span></span>(<span>seed=101)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset_random_state(seed=101):
+    &#34;&#34;&#34;Force re-seed the CuPy random generator.&#34;&#34;&#34;
+    dev = cupy.cuda.Device()
+    rs = RandomState(seed)
+    _random_states[dev.id] = rs</code></pre>
+</details>
+<div class="desc"><p>Force re-seed the CuPy random generator.</p></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.reset_states"><code class="name flex">
+<span>def <span class="ident">reset_states</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@atexit.register
+def reset_states():
+    global _random_states
+    _random_states = {}</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.seed"><code class="name flex">
+<span>def <span class="ident">seed</span></span>(<span>seed=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def seed(seed=None):
+    &#34;&#34;&#34;Resets the state of the random number generator with a seed.
+
+    This function resets the state of the global random number generator for
+    the current device. Be careful that generators for other devices are not
+    affected.
+
+    Args:
+        seed (None or int): Seed for the random number generator. If ``None``,
+            it uses :func:`os.urandom` if available or :func:`time.time`
+            otherwise. Note that this function does not support seeding by
+            an integer array.
+
+    &#34;&#34;&#34;
+    get_random_state().seed(seed)</code></pre>
+</details>
+<div class="desc"><p>Resets the state of the random number generator with a seed.</p>
+<p>This function resets the state of the global random number generator for
+the current device. Be careful that generators for other devices are not
+affected.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>seed</code></strong> :&ensp;<code>None</code> or <code>int</code></dt>
+<dd>Seed for the random number generator. If <code>None</code>,
+it uses :func:<code>os.urandom</code> if available or :func:<code>time.time</code>
+otherwise. Note that this function does not support seeding by
+an integer array.</dd>
+</dl></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.set_random_state"><code class="name flex">
+<span>def <span class="ident">set_random_state</span></span>(<span>rs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_random_state(rs):
+    &#34;&#34;&#34;Sets the state of the random number generator for the current device.
+
+    Args:
+        state(RandomState): Random state to set for the current device.
+    &#34;&#34;&#34;
+    if not isinstance(rs, RandomState):
+        raise TypeError(
+            &#39;Random state must be an instance of RandomState. &#39;
+            &#39;Actual: {}&#39;.format(type(rs)))
+    _random_states[device.get_device_id()] = rs</code></pre>
+</details>
+<div class="desc"><p>Sets the state of the random number generator for the current device.</p>
+<h2 id="args">Args</h2>
+<p>state(RandomState): Random state to set for the current device.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="gbayesdesign.rndgenerator.RandomState"><code class="flex name class">
+<span>class <span class="ident">RandomState</span></span>
+<span>(</span><span>seed=None, method=100)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RandomState(object):
+
+    &#34;&#34;&#34;Portable container of a pseudo-random number generator.
+
+    An instance of this class holds the state of a random number generator. The
+    state is available only on the device which has been current at the
+    initialization of the instance.
+
+    Functions of :mod:`cupy.random` use global instances of this class.
+    Different instances are used for different devices. The global state for
+    the current device can be obtained by the
+    :func:`cupy.random.get_random_state` function.
+
+    Args:
+        seed (None or int): Seed of the random number generator. See the
+            :meth:`~cupy.random.RandomState.seed` method for detail.
+        method (int): Method of the random number generator. Following values
+            are available::
+
+               cupy.cuda.curand.CURAND_RNG_PSEUDO_DEFAULT
+               cupy.cuda.curand.CURAND_RNG_PSEUDO_XORWOW
+               cupy.cuda.curand.CURAND_RNG_PSEUDO_MRG32K3A
+               cupy.cuda.curand.CURAND_RNG_PSEUDO_MTGP32
+               cupy.cuda.curand.CURAND_RNG_PSEUDO_MT19937
+               cupy.cuda.curand.CURAND_RNG_PSEUDO_PHILOX4_32_10
+
+    &#34;&#34;&#34;
+
+    def __init__(self, seed=None, method=curand.CURAND_RNG_PSEUDO_DEFAULT):
+        self._generator = curand.createGenerator(method)
+        self.method = method
+        self.seed(seed)
+
+    def __del__(self, is_shutting_down=_util.is_shutting_down):
+        # When createGenerator raises an error, _generator is not initialized
+        if is_shutting_down():
+            return
+        if hasattr(self, &#39;_generator&#39;):
+            curand.destroyGenerator(self._generator)
+
+    def _update_seed(self, size):
+        self._rk_seed = (self._rk_seed + size) % _UINT64_MAX
+
+    def _generate_normal(self, func, size, dtype, *args):
+        # curand functions below don&#39;t support odd size.
+        # * curand.generateNormal
+        # * curand.generateNormalDouble
+        # * curand.generateLogNormal
+        # * curand.generateLogNormalDouble
+        size = _core.get_size(size)
+        element_size = _core.internal.prod(size)
+        if element_size % 2 == 0:
+            out = cupy.empty(size, dtype=dtype)
+            func(self._generator, out.data.ptr, out.size, *args)
+            return out
+        else:
+            out = cupy.empty((element_size + 1,), dtype=dtype)
+            func(self._generator, out.data.ptr, out.size, *args)
+            return out[:element_size].reshape(size)
+
+    # NumPy compatible functions
+
+    def beta(self, a, b, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the beta distribution.
+
+        .. seealso::
+            - :func:`cupy.random.beta` for full documentation
+            - :meth:`numpy.random.RandomState.beta`
+        &#34;&#34;&#34;
+        a, b = cupy.asarray(a), cupy.asarray(b)
+        if size is None:
+            size = cupy.broadcast(a, b).shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.beta_kernel(a, b, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def binomial(self, n, p, size=None, dtype=int):
+        &#34;&#34;&#34;Returns an array of samples drawn from the binomial distribution.
+
+        .. seealso::
+            - :func:`cupy.random.binomial` for full documentation
+            - :meth:`numpy.random.RandomState.binomial`
+        &#34;&#34;&#34;
+        n, p = cupy.asarray(n), cupy.asarray(p)
+        if size is None:
+            size = cupy.broadcast(n, p).shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.binomial_kernel(n, p, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def chisquare(self, df, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the chi-square distribution.
+
+        .. seealso::
+            - :func:`cupy.random.chisquare` for full documentation
+            - :meth:`numpy.random.RandomState.chisquare`
+        &#34;&#34;&#34;
+        df = cupy.asarray(df)
+        if size is None:
+            size = df.shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.chisquare_kernel(df, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def dirichlet(self, alpha, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the dirichlet distribution.
+
+        .. seealso::
+            - :func:`cupy.random.dirichlet` for full documentation
+            - :meth:`numpy.random.RandomState.dirichlet`
+        &#34;&#34;&#34;
+        alpha = cupy.asarray(alpha)
+        if size is None:
+            size = alpha.shape
+        elif isinstance(size, (int, cupy.integer)):
+            size = (size,) + alpha.shape
+        else:
+            size += alpha.shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.standard_gamma_kernel(alpha, self._rk_seed, y)
+        y /= y.sum(axis=-1, keepdims=True)
+        self._update_seed(y.size)
+        return y
+
+    def exponential(self, scale=1.0, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from a exponential distribution.
+
+        .. warning::
+
+            This function may synchronize the device.
+
+        .. seealso::
+            - :func:`cupy.random.exponential` for full documentation
+            - :meth:`numpy.random.RandomState.exponential`
+        &#34;&#34;&#34;
+        scale = cupy.asarray(scale, dtype)
+        if (scale &lt; 0).any():  # synchronize!
+            raise ValueError(&#39;scale &lt; 0&#39;)
+        if size is None:
+            size = scale.shape
+        x = self.standard_exponential(size, dtype)
+        x *= scale
+        return x
+
+    def f(self, dfnum, dfden, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the f distribution.
+
+        .. seealso::
+            - :func:`cupy.random.f` for full documentation
+            - :meth:`numpy.random.RandomState.f`
+        &#34;&#34;&#34;
+        dfnum, dfden = cupy.asarray(dfnum), cupy.asarray(dfden)
+        if size is None:
+            size = cupy.broadcast(dfnum, dfden).shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.f_kernel(dfnum, dfden, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def gamma(self, shape, scale=1.0, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from a gamma distribution.
+
+        .. seealso::
+            - :func:`cupy.random.gamma` for full documentation
+            - :meth:`numpy.random.RandomState.gamma`
+        &#34;&#34;&#34;
+        shape, scale = cupy.asarray(shape), cupy.asarray(scale)
+        if size is None:
+            size = cupy.broadcast(shape, scale).shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.standard_gamma_kernel(shape, self._rk_seed, y)
+        y *= scale
+        self._update_seed(y.size)
+        return y
+
+    def geometric(self, p, size=None, dtype=int):
+        &#34;&#34;&#34;Returns an array of samples drawn from the geometric distribution.
+
+        .. seealso::
+            - :func:`cupy.random.geometric` for full documentation
+            - :meth:`numpy.random.RandomState.geometric`
+        &#34;&#34;&#34;
+        p = cupy.asarray(p)
+        if size is None:
+            size = p.shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.geometric_kernel(p, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def hypergeometric(self, ngood, nbad, nsample, size=None, dtype=int):
+        &#34;&#34;&#34;Returns an array of samples drawn from the hypergeometric distribution.
+
+        .. seealso::
+            - :func:`cupy.random.hypergeometric` for full documentation
+            - :meth:`numpy.random.RandomState.hypergeometric`
+        &#34;&#34;&#34;
+        ngood, nbad, nsample = \
+            cupy.asarray(ngood), cupy.asarray(nbad), cupy.asarray(nsample)
+        if size is None:
+            size = cupy.broadcast(ngood, nbad, nsample).shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.hypergeometric_kernel(ngood, nbad, nsample, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    _laplace_kernel = _core.ElementwiseKernel(
+        &#39;T x, T loc, T scale&#39;, &#39;T y&#39;,
+        &#39;y = loc + scale * ((x &lt;= 0.5) ? log(x + x): -log(x + x - 1.0))&#39;,
+        &#39;cupy_laplace_kernel&#39;)
+
+    def laplace(self, loc=0.0, scale=1.0, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the laplace distribution.
+
+        .. seealso::
+            - :func:`cupy.random.laplace` for full documentation
+            - :meth:`numpy.random.RandomState.laplace`
+        &#34;&#34;&#34;
+        loc = cupy.asarray(loc, dtype)
+        scale = cupy.asarray(scale, dtype)
+        if size is None:
+            size = cupy.broadcast(loc, scale).shape
+        x = self._random_sample_raw(size, dtype)
+        RandomState._laplace_kernel(x, loc, scale, x)
+        return x
+
+    def logistic(self, loc=0.0, scale=1.0, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the logistic distribution.
+
+        .. seealso::
+            - :func:`cupy.random.logistic` for full documentation
+            - :meth:`numpy.random.RandomState.logistic`
+        &#34;&#34;&#34;
+        loc, scale = cupy.asarray(loc), cupy.asarray(scale)
+        if size is None:
+            size = cupy.broadcast(loc, scale).shape
+        x = cupy.empty(shape=size, dtype=dtype)
+        _kernels.open_uniform_kernel(self._rk_seed, x)
+        self._update_seed(x.size)
+        x = (1.0 - x) / x
+        cupy.log(x, out=x)
+        cupy.multiply(x, scale, out=x)
+        cupy.add(x, loc, out=x)
+        return x
+
+    def lognormal(self, mean=0.0, sigma=1.0, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from a log normal distribution.
+
+        .. seealso::
+            - :func:`cupy.random.lognormal` for full documentation
+            - :meth:`numpy.random.RandomState.lognormal`
+
+        &#34;&#34;&#34;
+        if any(isinstance(arg, cupy.ndarray) for arg in (mean, sigma)):
+            x = self.normal(mean, sigma, size, dtype)
+            cupy.exp(x, out=x)
+            return x
+        if size is None:
+            size = ()
+        dtype = _check_and_get_dtype(dtype)
+        if dtype.char == &#39;f&#39;:
+            func = curand.generateLogNormal
+        else:
+            func = curand.generateLogNormalDouble
+        return self._generate_normal(func, size, dtype, mean, sigma)
+
+    def logseries(self, p, size=None, dtype=int):
+        &#34;&#34;&#34;Returns an array of samples drawn from a log series distribution.
+
+        .. warning::
+
+            This function may synchronize the device.
+
+        .. seealso::
+            - :func:`cupy.random.logseries` for full documentation
+            - :meth:`numpy.random.RandomState.logseries`
+
+        &#34;&#34;&#34;
+        p = cupy.asarray(p)
+        if cupy.any(p &lt;= 0):  # synchronize!
+            raise ValueError(&#39;p &lt;= 0.0&#39;)
+        if cupy.any(p &gt;= 1):  # synchronize!
+            raise ValueError(&#39;p &gt;= 1.0&#39;)
+        if size is None:
+            size = p.shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.logseries_kernel(p, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def multivariate_normal(self, mean, cov, size=None, check_valid=&#39;ignore&#39;,
+                            tol=1e-08, method=&#39;cholesky&#39;, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the multivariate normal
+        distribution.
+
+        .. warning::
+            This function calls one or more cuSOLVER routine(s) which may yield
+            invalid results if input conditions are not met.
+            To detect these invalid results, you can set the `linalg`
+            configuration to a value that is not `ignore` in
+            :func:`cupyx.errstate` or :func:`cupyx.seterr`.
+
+        .. seealso::
+            - :func:`cupy.random.multivariate_normal` for full documentation
+            - :meth:`numpy.random.RandomState.multivariate_normal`
+        &#34;&#34;&#34;
+        #_util.experimental(&#39;cupy.random.RandomState.multivariate_normal&#39;)
+        mean = cupy.asarray(mean, dtype=dtype)
+        cov = cupy.asarray(cov, dtype=dtype)
+        if size is None:
+            shape = []
+        elif isinstance(size, (int, cupy.integer)):
+            shape = [size]
+        else:
+            shape = size
+
+        if len(mean.shape) != 1:
+            raise ValueError(&#39;mean must be 1 dimensional&#39;)
+        if (len(cov.shape) != 2) or (cov.shape[0] != cov.shape[1]):
+            raise ValueError(&#39;cov must be 2 dimensional and square&#39;)
+        if mean.shape[0] != cov.shape[0]:
+            raise ValueError(&#39;mean and cov must have same length&#39;)
+
+        final_shape = list(shape[:])
+        final_shape.append(mean.shape[0])
+
+        if method not in {&#39;eigh&#39;, &#39;svd&#39;, &#39;cholesky&#39;}:
+            raise ValueError(
+                &#34;method must be one of {&#39;eigh&#39;, &#39;svd&#39;, &#39;cholesky&#39;}&#34;)
+
+        if check_valid != &#39;ignore&#39;:
+            if check_valid != &#39;warn&#39; and check_valid != &#39;raise&#39;:
+                raise ValueError(
+                    &#34;check_valid must equal &#39;warn&#39;, &#39;raise&#39;, or &#39;ignore&#39;&#34;)
+
+        if check_valid == &#39;warn&#39;:
+            with cupyx.errstate(linalg=&#39;raise&#39;):
+                try:
+                    decomp = cupy.linalg.cholesky(cov)
+                except LinAlgError:
+                    with cupyx.errstate(linalg=&#39;ignore&#39;):
+                        if method != &#39;cholesky&#39;:
+                            if method == &#39;eigh&#39;:
+                                (s, u) = cupy.linalg.eigh(cov)
+                                psd = not cupy.any(s &lt; -tol)
+                            if method == &#39;svd&#39;:
+                                (u, s, vh) = cupy.linalg.svd(cov)
+                                psd = cupy.allclose(cupy.dot(vh.T * s, vh),
+                                                    cov, rtol=tol, atol=tol)
+                            decomp = u * cupy.sqrt(cupy.abs(s))
+                            if not psd:
+                                warnings.warn(&#34;covariance is not positive-&#34; +
+                                              &#34;semidefinite, output may be &#34; +
+                                              &#34;invalid.&#34;, RuntimeWarning)
+
+                        else:
+                            warnings.warn(&#34;covariance is not positive-&#34; +
+                                          &#34;semidefinite, output *is* &#34; +
+                                          &#34;invalid.&#34;, RuntimeWarning)
+                            decomp = cupy.linalg.cholesky(cov)
+
+        else:
+            with cupyx.errstate(linalg=check_valid):
+                try:
+                    if method == &#39;cholesky&#39;:
+                        decomp = cupy.linalg.cholesky(cov)
+                    elif method == &#39;eigh&#39;:
+                        (s, u) = cupy.linalg.eigh(cov)
+                        decomp = u * cupy.sqrt(cupy.abs(s))
+                    elif method == &#39;svd&#39;:
+                        (u, s, vh) = cupy.linalg.svd(cov)
+                        decomp = u * cupy.sqrt(cupy.abs(s))
+
+                except LinAlgError:
+                    raise LinAlgError(&#34;Matrix is not positive definite; if &#34; +
+                                      &#34;matrix is positive-semidefinite, set&#34; +
+                                      &#34;&#39;check_valid&#39; to &#39;warn&#39;&#34;)
+
+        x = self.standard_normal(final_shape,
+                                 dtype=dtype).reshape(-1, mean.shape[0])
+        x = cupy.dot(decomp, x.T)
+        x = x.T
+        x += mean
+        x.shape = tuple(final_shape)
+        return x
+
+    def negative_binomial(self, n, p, size=None, dtype=int):
+        &#34;&#34;&#34;Returns an array of samples drawn from the negative binomial distribution.
+
+        .. warning::
+
+            This function may synchronize the device.
+
+        .. seealso::
+            - :func:`cupy.random.negative_binomial` for full documentation
+            - :meth:`numpy.random.RandomState.negative_binomial`
+        &#34;&#34;&#34;
+        n = cupy.asarray(n)
+        p = cupy.asarray(p)
+        if cupy.any(n &lt;= 0):  # synchronize!
+            raise ValueError(&#39;n &lt;= 0&#39;)
+        if cupy.any(p &lt; 0):  # synchronize!
+            raise ValueError(&#39;p &lt; 0&#39;)
+        if cupy.any(p &gt; 1):  # synchronize!
+            raise ValueError(&#39;p &gt; 1&#39;)
+        y = self.gamma(n, (1-p)/p, size)
+        return self.poisson(y, dtype=dtype)
+
+    def normal(self, loc=0.0, scale=1.0, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of normally distributed samples.
+
+        .. seealso::
+            - :func:`cupy.random.normal` for full documentation
+            - :meth:`numpy.random.RandomState.normal`
+
+        &#34;&#34;&#34;
+            
+        dtype = _check_and_get_dtype(dtype)
+        if size is None:
+            size = cupy.broadcast(loc, scale).shape
+        if dtype.char == &#39;f&#39;:
+            func = curand.generateNormal
+        else:
+            func = curand.generateNormalDouble
+        if isinstance(scale, cupy.ndarray):
+            x = self._generate_normal(func, size, dtype, 0.0, 1.0)
+            cupy.multiply(x, scale, out=x)
+            cupy.add(x, loc, out=x)
+        elif isinstance(loc, cupy.ndarray):
+            x = self._generate_normal(func, size, dtype, 0.0, scale)
+            cupy.add(x, loc, out=x)
+        else:
+            x = self._generate_normal(func, size, dtype, loc, scale)
+        return x
+
+    def pareto(self, a, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the pareto II distribution.
+
+        .. seealso::
+            - :func:`cupy.random.pareto` for full documentation
+            - :meth:`numpy.random.RandomState.pareto`
+        &#34;&#34;&#34;
+        a = cupy.asarray(a)
+        if size is None:
+            size = a.shape
+        x = self._random_sample_raw(size, dtype)
+        cupy.log(x, out=x)
+        cupy.exp(-x/a, out=x)
+        return x - 1
+
+    def noncentral_chisquare(self, df, nonc, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the noncentral chi-square
+        distribution.
+
+        .. warning::
+
+            This function may synchronize the device.
+
+        .. seealso::
+            - :func:`cupy.random.noncentral_chisquare` for full documentation
+            - :meth:`numpy.random.RandomState.noncentral_chisquare`
+        &#34;&#34;&#34;
+        df, nonc = cupy.asarray(df), cupy.asarray(nonc)
+        if cupy.any(df &lt;= 0):  # synchronize!
+            raise ValueError(&#39;df &lt;= 0&#39;)
+        if cupy.any(nonc &lt; 0):  # synchronize!
+            raise ValueError(&#39;nonc &lt; 0&#39;)
+        if size is None:
+            size = cupy.broadcast(df, nonc).shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.noncentral_chisquare_kernel(df, nonc, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def noncentral_f(self, dfnum, dfden, nonc, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the noncentral F distribution.
+
+        .. warning::
+
+            This function may synchronize the device.
+
+        .. seealso::
+            - :func:`cupy.random.noncentral_f` for full documentation
+            - :meth:`numpy.random.RandomState.noncentral_f`
+        &#34;&#34;&#34;
+        dfnum, dfden, nonc = \
+            cupy.asarray(dfnum), cupy.asarray(dfden), cupy.asarray(nonc)
+        if cupy.any(dfnum &lt;= 0):  # synchronize!
+            raise ValueError(&#39;dfnum &lt;= 0&#39;)
+        if cupy.any(dfden &lt;= 0):  # synchronize!
+            raise ValueError(&#39;dfden &lt;= 0&#39;)
+        if cupy.any(nonc &lt; 0):  # synchronize!
+            raise ValueError(&#39;nonc &lt; 0&#39;)
+        if size is None:
+            size = cupy.broadcast(dfnum, dfden, nonc).shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.noncentral_f_kernel(dfnum, dfden, nonc, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def poisson(self, lam=1.0, size=None, dtype=int):
+        &#34;&#34;&#34;Returns an array of samples drawn from the poisson distribution.
+
+        .. seealso::
+            - :func:`cupy.random.poisson` for full documentation
+            - :meth:`numpy.random.RandomState.poisson`
+        &#34;&#34;&#34;
+        lam = cupy.asarray(lam)
+        if size is None:
+            size = lam.shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.poisson_kernel(lam, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def power(self, a, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the power distribution.
+
+        .. warning::
+
+            This function may synchronize the device.
+
+        .. seealso::
+            - :func:`cupy.random.power` for full documentation
+            - :meth:`numpy.random.RandomState.power`
+        &#34;&#34;&#34;
+        a = cupy.asarray(a)
+        if cupy.any(a &lt; 0):  # synchronize!
+            raise ValueError(&#39;a &lt; 0&#39;)
+        if size is None:
+            size = a.shape
+        x = self.standard_exponential(size=size, dtype=dtype)
+        cupy.exp(-x, out=x)
+        cupy.add(1, -x, out=x)
+        cupy.power(x, 1./a, out=x)
+        return x
+
+    def rand(self, *size, **kwarg):
+        &#34;&#34;&#34;Returns uniform random values over the interval ``[0, 1)``.
+
+        .. seealso::
+            - :func:`cupy.random.rand` for full documentation
+            - :meth:`numpy.random.RandomState.rand`
+
+        &#34;&#34;&#34;
+        dtype = kwarg.pop(&#39;dtype&#39;, float)
+        if kwarg:
+            raise TypeError(&#39;rand() got unexpected keyword arguments %s&#39;
+                            % &#39;, &#39;.join(kwarg.keys()))
+        return self.random_sample(size=size, dtype=dtype)
+
+    def randn(self, *size, **kwarg):
+        &#34;&#34;&#34;Returns an array of standard normal random values.
+
+        .. seealso::
+            - :func:`cupy.random.randn` for full documentation
+            - :meth:`numpy.random.RandomState.randn`
+
+        &#34;&#34;&#34;
+        dtype = kwarg.pop(&#39;dtype&#39;, float)
+        if kwarg:
+            raise TypeError(&#39;randn() got unexpected keyword arguments %s&#39;
+                            % &#39;, &#39;.join(kwarg.keys()))
+        return self.normal(size=size, dtype=dtype)
+
+    _mod1_kernel = _core.ElementwiseKernel(
+        &#39;&#39;, &#39;T x&#39;, &#39;x = (x == (T)1) ? 0 : x&#39;, &#39;cupy_random_x_mod_1&#39;)
+
+    def _random_sample_raw(self, size, dtype):
+        dtype = _check_and_get_dtype(dtype)
+        out = cupy.empty(size, dtype=dtype)
+        if dtype.char == &#39;f&#39;:
+            func = curand.generateUniform
+        else:
+            func = curand.generateUniformDouble
+        func(self._generator, out.data.ptr, out.size)
+        return out
+
+    def random_sample(self, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of random values over the interval ``[0, 1)``.
+
+        .. seealso::
+            - :func:`cupy.random.random_sample` for full documentation
+            - :meth:`numpy.random.RandomState.random_sample`
+
+        &#34;&#34;&#34;
+        if size is None:
+            size = ()
+        out = self._random_sample_raw(size, dtype)
+        RandomState._mod1_kernel(out)
+        return out
+
+    def rayleigh(self, scale=1.0, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from a rayleigh distribution.
+
+        .. warning::
+
+            This function may synchronize the device.
+
+        .. seealso::
+            - :func:`cupy.random.rayleigh` for full documentation
+            - :meth:`numpy.random.RandomState.rayleigh`
+        &#34;&#34;&#34;
+        scale = cupy.asarray(scale)
+        if size is None:
+            size = scale.shape
+        if cupy.any(scale &lt; 0):  # synchronize!
+            raise ValueError(&#39;scale &lt; 0&#39;)
+        x = self._random_sample_raw(size, dtype)
+        x = cupy.log(x, out=x)
+        x = cupy.multiply(x, -2., out=x)
+        x = cupy.sqrt(x, out=x)
+        x = cupy.multiply(x, scale, out=x)
+        return x
+
+    def _interval(self, mx, size):
+        &#34;&#34;&#34;Generate multiple integers independently sampled uniformly from ``[0, mx]``.
+
+        Args:
+            mx (int): Upper bound of the interval
+            size (None or int or tuple): Shape of the array or the scalar
+                returned.
+        Returns:
+            int or cupy.ndarray: If ``None``, an :class:`cupy.ndarray` with
+            shape ``()`` is returned.
+            If ``int``, 1-D array of length size is returned.
+            If ``tuple``, multi-dimensional array with shape
+            ``size`` is returned.
+            Currently, only 32 bit or 64 bit integers can be sampled.
+        &#34;&#34;&#34;  # NOQA
+        if size is None:
+            size = ()
+        elif isinstance(size, int):
+            size = size,
+
+        if mx == 0:
+            return cupy.zeros(size, dtype=numpy.uint32)
+
+        if mx &lt; 0:
+            raise ValueError(
+                &#39;mx must be non-negative (actual: {})&#39;.format(mx))
+        elif mx &lt;= _UINT32_MAX:
+            dtype = numpy.uint32
+            upper_limit = _UINT32_MAX - (1 &lt;&lt; 32) % (mx + 1)
+        elif mx &lt;= _UINT64_MAX:
+            dtype = numpy.uint64
+            upper_limit = _UINT64_MAX - (1 &lt;&lt; 64) % (mx + 1)
+        else:
+            raise ValueError(
+                &#39;mx must be within uint64 range (actual: {})&#39;.format(mx))
+
+        n_sample = functools.reduce(operator.mul, size, 1)
+        if n_sample == 0:
+            return cupy.empty(size, dtype=dtype)
+        sample = self._curand_generate(n_sample, dtype)
+
+        mx1 = mx + 1
+        if mx1 != (1 &lt;&lt; (mx1.bit_length() - 1)):
+            # Get index of samples that exceed the upper limit
+            ng_indices = self._get_indices(sample, upper_limit, False)
+            n_ng = ng_indices.size
+
+            while n_ng &gt; 0:
+                n_supplement = max(n_ng * 2, 1024)
+                supplement = self._curand_generate(n_supplement, dtype)
+
+                # Get index of supplements that are within the upper limit
+                ok_indices = self._get_indices(supplement, upper_limit, True)
+                n_ok = ok_indices.size
+
+                # Replace the values that exceed the upper limit
+                if n_ok &gt;= n_ng:
+                    sample[ng_indices] = supplement[ok_indices[:n_ng]]
+                    n_ng = 0
+                else:
+                    sample[ng_indices[:n_ok]] = supplement[ok_indices]
+                    ng_indices = ng_indices[n_ok:]
+                    n_ng -= n_ok
+            sample %= mx1
+        else:
+            mask = (1 &lt;&lt; mx.bit_length()) - 1
+            sample &amp;= mask
+
+        return sample.reshape(size)
+
+    def _curand_generate(self, num, dtype):
+        sample = cupy.empty((num,), dtype=dtype)
+        # Call 32-bit RNG to fill 32-bit or 64-bit `sample`
+        size32 = sample.view(dtype=numpy.uint32).size
+        curand.generate(self._generator, sample.data.ptr, size32)
+        return sample
+
+    def _get_indices(self, sample, upper_limit, cond):
+        dtype = numpy.uint32 if sample.size &lt; 2**32 else numpy.uint64
+        flags = (sample &lt;= upper_limit) if cond else (sample &gt; upper_limit)
+        csum = cupy.cumsum(flags, dtype=dtype)
+        del flags
+        indices = cupy.empty((int(csum[-1]),), dtype=dtype)
+        self._kernel_get_indices(csum, indices, size=csum.size)
+        return indices
+
+    _kernel_get_indices = _core.ElementwiseKernel(
+        &#39;raw U csum&#39;, &#39;raw U indices&#39;,
+        &#39;&#39;&#39;
+        int j = 0;
+        if (i &gt; 0) { j = csum[i-1]; }
+        if (csum[i] &gt; j) { indices[j] = i; }
+        &#39;&#39;&#39;,
+        &#39;cupy_get_indices&#39;)
+
+    def seed(self, seed=None):
+        &#34;&#34;&#34;Resets the state of the random number generator with a seed.
+
+        .. seealso::
+            - :func:`cupy.random.seed` for full documentation
+            - :meth:`numpy.random.RandomState.seed`
+
+        &#34;&#34;&#34;
+        if seed is None:
+            try:
+                seed_str = binascii.hexlify(os.urandom(8))
+                seed = int(seed_str, 16)
+            except NotImplementedError:
+                seed = (time.time() * 1000000) % _UINT64_MAX
+        else:
+            if isinstance(seed, numpy.ndarray):
+                seed = int(hashlib.md5(seed).hexdigest()[:16], 16)
+            else:
+                seed = int(
+                    numpy.asarray(seed).astype(numpy.uint64, casting=&#39;safe&#39;))
+
+        curand.setPseudoRandomGeneratorSeed(self._generator, seed)
+        if (self.method not in (curand.CURAND_RNG_PSEUDO_MT19937,
+                                curand.CURAND_RNG_PSEUDO_MTGP32)):
+            curand.setGeneratorOffset(self._generator, 0)
+
+        self._rk_seed = seed
+
+    def standard_cauchy(self, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the standard cauchy distribution.
+
+        .. seealso::
+            - :func:`cupy.random.standard_cauchy` for full documentation
+            - :meth:`numpy.random.RandomState.standard_cauchy`
+        &#34;&#34;&#34;
+        x = self.uniform(size=size, dtype=dtype)
+        return cupy.tan(cupy.pi * (x - 0.5))
+
+    def standard_exponential(self, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the standard exp distribution.
+
+         .. seealso::
+            - :func:`cupy.random.standard_exponential` for full documentation
+            - :meth:`numpy.random.RandomState.standard_exponential`
+        &#34;&#34;&#34;
+        if size is None:
+            size = ()
+        x = self._random_sample_raw(size, dtype)
+        return -cupy.log(x, out=x)
+
+    def standard_gamma(self, shape, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from a standard gamma distribution.
+
+        .. seealso::
+            - :func:`cupy.random.standard_gamma` for full documentation
+            - :meth:`numpy.random.RandomState.standard_gamma`
+        &#34;&#34;&#34;
+        shape = cupy.asarray(shape)
+        if size is None:
+            size = shape.shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.standard_gamma_kernel(shape, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def standard_normal(self, size=None, dtype=float):
+        &#34;&#34;&#34;Returns samples drawn from the standard normal distribution.
+
+        .. seealso::
+            - :func:`cupy.random.standard_normal` for full documentation
+            - :meth:`numpy.random.RandomState.standard_normal`
+
+        &#34;&#34;&#34;
+        return self.normal(size=size, dtype=dtype)
+
+    def standard_t(self, df, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the standard t distribution.
+
+        .. seealso::
+            - :func:`cupy.random.standard_t` for full documentation
+            - :meth:`numpy.random.RandomState.standard_t`
+        &#34;&#34;&#34;
+        df = cupy.asarray(df)
+        if size is None:
+            size = df.shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.standard_t_kernel(df, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def tomaxint(self, size=None):
+        &#34;&#34;&#34;Draws integers between 0 and max integer inclusive.
+
+        Return a sample of uniformly distributed random integers in the
+        interval [0, ``np.iinfo(np.int_).max``]. The `np.int_` type translates
+        to the C long integer type and its precision is platform dependent.
+
+        Args:
+            size (int or tuple of ints): Output shape.
+
+        Returns:
+            cupy.ndarray: Drawn samples.
+
+        .. seealso::
+            :meth:`numpy.random.RandomState.tomaxint`
+
+        &#34;&#34;&#34;
+        if size is None:
+            size = ()
+        sample = cupy.empty(size, dtype=cupy.int_)
+        # cupy.random only uses int32 random generator
+        size_in_int = sample.dtype.itemsize // 4
+        curand.generate(
+            self._generator, sample.data.ptr, sample.size * size_in_int)
+
+        # Disable sign bit
+        sample &amp;= cupy.iinfo(cupy.int_).max
+        return sample
+
+    _triangular_kernel = _core.ElementwiseKernel(
+        &#39;L left, M mode, R right&#39;, &#39;T x&#39;,
+        &#34;&#34;&#34;
+        T base, leftbase, ratio, leftprod, rightprod;
+
+        base = right - left;
+        leftbase = mode - left;
+        ratio = leftbase / base;
+        leftprod = leftbase*base;
+        rightprod = (right - mode)*base;
+
+        if (x &lt;= ratio)
+        {
+            x = left + sqrt(x*leftprod);
+        } else
+        {
+            x = right - sqrt((1.0 - x) * rightprod);
+        }
+        &#34;&#34;&#34;,
+        &#39;cupy_triangular_kernel&#39;
+    )
+
+    def triangular(self, left, mode, right, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the triangular distribution.
+
+        .. warning::
+
+            This function may synchronize the device.
+
+        .. seealso::
+            - :func:`cupy.random.triangular` for full documentation
+            - :meth:`numpy.random.RandomState.triangular`
+        &#34;&#34;&#34;
+        left, mode, right = \
+            cupy.asarray(left), cupy.asarray(mode), cupy.asarray(right)
+        if cupy.any(left &gt; mode):  # synchronize!
+            raise ValueError(&#39;left &gt; mode&#39;)
+        if cupy.any(mode &gt; right):  # synchronize!
+            raise ValueError(&#39;mode &gt; right&#39;)
+        if cupy.any(left == right):  # synchronize!
+            raise ValueError(&#39;left == right&#39;)
+        if size is None:
+            size = cupy.broadcast(left, mode, right).shape
+        x = self.random_sample(size=size, dtype=dtype)
+        return RandomState._triangular_kernel(left, mode, right, x)
+
+    _scale_kernel = _core.ElementwiseKernel(
+        &#39;T low, T high&#39;, &#39;T x&#39;,
+        &#39;x = T(low) + x * T(high - low)&#39;,
+        &#39;cupy_scale&#39;)
+
+    def uniform(self, low=0.0, high=1.0, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of uniformly-distributed samples over an interval.
+
+        .. seealso::
+            - :func:`cupy.random.uniform` for full documentation
+            - :meth:`numpy.random.RandomState.uniform`
+
+        &#34;&#34;&#34;
+        dtype = numpy.dtype(dtype)
+        rand = self.random_sample(size=size, dtype=dtype)
+        if not numpy.isscalar(low):
+            low = cupy.asarray(low, dtype)
+        if not numpy.isscalar(high):
+            high = cupy.asarray(high, dtype)
+        return RandomState._scale_kernel(low, high, rand)
+
+    def vonmises(self, mu, kappa, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the von Mises distribution.
+
+        .. seealso::
+            - :func:`cupy.random.vonmises` for full documentation
+            - :meth:`numpy.random.RandomState.vonmises`
+        &#34;&#34;&#34;
+        mu, kappa = cupy.asarray(mu), cupy.asarray(kappa)
+        if size is None:
+            size = cupy.broadcast(mu, kappa).shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.vonmises_kernel(mu, kappa, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    _wald_kernel = _core.ElementwiseKernel(
+        &#39;T mean, T scale, T U&#39;, &#39;T X&#39;,
+        &#34;&#34;&#34;
+            T mu_2l;
+            T Y;
+            mu_2l = mean / (2*scale);
+            Y = mean*X*X;
+            X = mean + mu_2l*(Y - sqrt(4*scale*Y + Y*Y));
+            if (U &gt; mean/(mean+X))
+            {
+                X = mean*mean/X;
+            }
+        &#34;&#34;&#34;,
+        &#39;cupy_wald_scale&#39;)
+
+    def wald(self, mean, scale, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the Wald distribution.
+
+         .. seealso::
+            - :func:`cupy.random.wald` for full documentation
+            - :meth:`numpy.random.RandomState.wald`
+        &#34;&#34;&#34;
+        mean, scale = \
+            cupy.asarray(mean, dtype=dtype), cupy.asarray(scale, dtype=dtype)
+        if size is None:
+            size = cupy.broadcast(mean, scale).shape
+        x = self.normal(size=size, dtype=dtype)
+        u = self.random_sample(size=size, dtype=dtype)
+        return RandomState._wald_kernel(mean, scale, u, x)
+
+    def weibull(self, a, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from the weibull distribution.
+
+        .. warning::
+
+            This function may synchronize the device.
+
+        .. seealso::
+            - :func:`cupy.random.weibull` for full documentation
+            - :meth:`numpy.random.RandomState.weibull`
+        &#34;&#34;&#34;
+        a = cupy.asarray(a)
+        if cupy.any(a &lt; 0):  # synchronize!
+            raise ValueError(&#39;a &lt; 0&#39;)
+
+        if size is None:
+            size = a.shape
+
+        x = self.standard_exponential(size, dtype)
+        cupy.power(x, 1./a, out=x)
+        return x
+
+    def zipf(self, a, size=None, dtype=int):
+        &#34;&#34;&#34;Returns an array of samples drawn from the Zipf distribution.
+
+        .. warning::
+
+            This function may synchronize the device.
+
+        .. seealso::
+            - :func:`cupy.random.zipf` for full documentation
+            - :meth:`numpy.random.RandomState.zipf`
+        &#34;&#34;&#34;
+        a = cupy.asarray(a)
+        if cupy.any(a &lt;= 1.0):  # synchronize!
+            raise ValueError(&#39;\&#39;a\&#39; must be a valid float &gt; 1.0&#39;)
+        if size is None:
+            size = a.shape
+        y = cupy.empty(shape=size, dtype=dtype)
+        _kernels.zipf_kernel(a, self._rk_seed, y)
+        self._update_seed(y.size)
+        return y
+
+    def choice(self, a, size=None, replace=True, p=None):
+        &#34;&#34;&#34;Returns an array of random values from a given 1-D array.
+
+        .. seealso::
+            - :func:`cupy.random.choice` for full documentation
+            - :meth:`numpy.random.choice`
+
+        &#34;&#34;&#34;
+        if a is None:
+            raise ValueError(&#39;a must be 1-dimensional or an integer&#39;)
+        if isinstance(a, cupy.ndarray) and a.ndim == 0:
+            raise NotImplementedError
+        if isinstance(a, int):
+            a_size = a
+            if a_size &lt; 0:
+                raise ValueError(&#39;a must be greater than or equal to 0&#39;)
+        else:
+            a = cupy.array(a, copy=False)
+            if a.ndim != 1:
+                raise ValueError(&#39;a must be 1-dimensional or an integer&#39;)
+            a_size = len(a)
+
+        #if p is not None:
+        #    p = cupy.array(p,copy=False)
+        #    if p.ndim != 1:
+        #        raise ValueError(&#39;p must be 1-dimensional&#39;)
+        #    if len(p) != a_size:
+        #        raise ValueError(&#39;a and p must have same size&#39;)
+        #    if not (p &gt;= 0).all():
+        #        raise ValueError(&#39;probabilities are not non-negative&#39;)
+            #p_sum = cupy.sum(p).get()
+            #if not numpy.allclose(p_sum, 1):
+            #    raise ValueError(&#39;probabilities do not sum to 1&#39;)
+
+        if size is None:
+            raise NotImplementedError(
+                &#39;choice() without specifying size is not supported yet&#39;)
+        shape = size
+        size = numpy.prod(shape)
+
+        if a_size == 0 and size &gt; 0:
+            raise ValueError(&#39;a cannot be empty unless no samples are taken&#39;)
+
+        if not replace and p is None:
+            if a_size &lt; size:
+                raise ValueError(
+                    &#39;Cannot take a larger sample than population when &#39;
+                    &#39;\&#39;replace=False\&#39;&#39;)
+            if isinstance(a, int):
+                indices = cupy.arange(a, dtype=&#39;l&#39;)
+            else:
+                indices = a.copy()
+            self.shuffle(indices)
+            return indices[:size].reshape(shape)
+
+        if not replace:
+            raise NotImplementedError
+
+        if p is not None:
+            p = cupy.broadcast_to(p, (size, a_size))
+            index = cupy.argmax(cupy.log(p) +
+                                self.gumbel(size=(size, a_size)),
+                                axis=1)
+            if not isinstance(shape, int):
+                index = cupy.reshape(index, shape)
+        else:
+            if a_size == 0:  # TODO: (#4511) Fix `randint` instead
+                a_size = 1
+            index = self.randint(0, a_size, size=shape)
+            # Align the dtype with NumPy
+            index = index.astype(cupy.int64, copy=False)
+
+        if isinstance(a, int):
+            return index
+
+        if index.ndim == 0:
+            return cupy.array(a[index], dtype=a.dtype)
+
+        return a[index]
+
+    def shuffle(self, a):
+        &#34;&#34;&#34;Returns a shuffled array.
+
+        .. seealso::
+            - :func:`cupy.random.shuffle` for full documentation
+            - :meth:`numpy.random.shuffle`
+
+        &#34;&#34;&#34;
+        if not isinstance(a, cupy.ndarray):
+            raise TypeError(&#39;The array must be cupy.ndarray&#39;)
+
+        if a.ndim == 0:
+            raise TypeError(&#39;An array whose ndim is 0 is not supported&#39;)
+
+        a[:] = a[self._permutation(len(a))]
+
+    def permutation(self, a):
+        &#34;&#34;&#34;Returns a permuted range or a permutation of an array.&#34;&#34;&#34;
+        if isinstance(a, int):
+            return self._permutation(a)
+        else:
+            return a[self._permutation(len(a))]
+
+    def _permutation(self, num):
+        &#34;&#34;&#34;Returns a permuted range.&#34;&#34;&#34;
+        sample = cupy.empty((num,), dtype=numpy.int32)
+        curand.generate(self._generator, sample.data.ptr, num)
+        array = cupy.argsort(sample)
+        return array
+
+    _gumbel_kernel = _core.ElementwiseKernel(
+        &#39;T x, T loc, T scale&#39;, &#39;T y&#39;,
+        &#39;y = T(loc) - log(-log(x)) * T(scale)&#39;,
+        &#39;cupy_gumbel_kernel&#39;)
+
+    def gumbel(self, loc=0.0, scale=1.0, size=None, dtype=float):
+        &#34;&#34;&#34;Returns an array of samples drawn from a Gumbel distribution.
+
+        .. seealso::
+            - :func:`cupy.random.gumbel` for full documentation
+            - :meth:`numpy.random.RandomState.gumbel`
+        &#34;&#34;&#34;
+        if not numpy.isscalar(loc):
+            loc = cupy.asarray(loc, dtype)
+        if not numpy.isscalar(scale):
+            scale = cupy.asarray(scale, dtype)
+        if size is None:
+            size = cupy.broadcast(loc, scale).shape
+        x = self._random_sample_raw(size=size, dtype=dtype)
+        RandomState._gumbel_kernel(x, loc, scale, x)
+        return x
+
+    def randint(self, low, high=None, size=None, dtype=int):
+        &#34;&#34;&#34;Returns a scalar or an array of integer values over ``[low, high)``.
+
+        .. seealso::
+            - :func:`cupy.random.randint` for full documentation
+            - :meth:`numpy.random.RandomState.randint`
+        &#34;&#34;&#34;
+        if high is None:
+            lo = 0
+            hi1 = int(low) - 1
+        else:
+            lo = int(low)
+            hi1 = int(high) - 1
+
+        if lo &gt; hi1:
+            raise ValueError(&#39;low &gt;= high&#39;)
+        if lo &lt; cupy.iinfo(dtype).min:
+            raise ValueError(
+                &#39;low is out of bounds for {}&#39;.format(cupy.dtype(dtype).name))
+        if hi1 &gt; cupy.iinfo(dtype).max:
+            raise ValueError(
+                &#39;high is out of bounds for {}&#39;.format(cupy.dtype(dtype).name))
+
+        diff = hi1 - lo
+        x = self._interval(diff, size).astype(dtype, copy=False)
+        cupy.add(x, lo, out=x)
+        return x</code></pre>
+</details>
+<div class="desc"><p>Portable container of a pseudo-random number generator.</p>
+<p>An instance of this class holds the state of a random number generator. The
+state is available only on the device which has been current at the
+initialization of the instance.</p>
+<p>Functions of :mod:<code>cupy.random</code> use global instances of this class.
+Different instances are used for different devices. The global state for
+the current device can be obtained by the
+:func:<code>cupy.random.get_random_state</code> function.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>seed</code></strong> :&ensp;<code>None</code> or <code>int</code></dt>
+<dd>Seed of the random number generator. See the
+:meth:<code>~cupy.random.RandomState.seed</code> method for detail.</dd>
+<dt><strong><code>method</code></strong> :&ensp;<code>int</code></dt>
+<dd>
+<p>Method of the random number generator. Following values
+are available::</p>
+<p>cupy.cuda.curand.CURAND_RNG_PSEUDO_DEFAULT
+cupy.cuda.curand.CURAND_RNG_PSEUDO_XORWOW
+cupy.cuda.curand.CURAND_RNG_PSEUDO_MRG32K3A
+cupy.cuda.curand.CURAND_RNG_PSEUDO_MTGP32
+cupy.cuda.curand.CURAND_RNG_PSEUDO_MT19937
+cupy.cuda.curand.CURAND_RNG_PSEUDO_PHILOX4_32_10</p>
+</dd>
+</dl></div>
+<h3>Methods</h3>
+<dl>
+<dt id="gbayesdesign.rndgenerator.RandomState.beta"><code class="name flex">
+<span>def <span class="ident">beta</span></span>(<span>self, a, b, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def beta(self, a, b, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the beta distribution.
+
+    .. seealso::
+        - :func:`cupy.random.beta` for full documentation
+        - :meth:`numpy.random.RandomState.beta`
+    &#34;&#34;&#34;
+    a, b = cupy.asarray(a), cupy.asarray(b)
+    if size is None:
+        size = cupy.broadcast(a, b).shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.beta_kernel(a, b, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the beta distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.beta</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.beta</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.binomial"><code class="name flex">
+<span>def <span class="ident">binomial</span></span>(<span>self, n, p, size=None, dtype=builtins.int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def binomial(self, n, p, size=None, dtype=int):
+    &#34;&#34;&#34;Returns an array of samples drawn from the binomial distribution.
+
+    .. seealso::
+        - :func:`cupy.random.binomial` for full documentation
+        - :meth:`numpy.random.RandomState.binomial`
+    &#34;&#34;&#34;
+    n, p = cupy.asarray(n), cupy.asarray(p)
+    if size is None:
+        size = cupy.broadcast(n, p).shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.binomial_kernel(n, p, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the binomial distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.binomial</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.binomial</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.chisquare"><code class="name flex">
+<span>def <span class="ident">chisquare</span></span>(<span>self, df, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def chisquare(self, df, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the chi-square distribution.
+
+    .. seealso::
+        - :func:`cupy.random.chisquare` for full documentation
+        - :meth:`numpy.random.RandomState.chisquare`
+    &#34;&#34;&#34;
+    df = cupy.asarray(df)
+    if size is None:
+        size = df.shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.chisquare_kernel(df, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the chi-square distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.chisquare</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.chisquare</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.choice"><code class="name flex">
+<span>def <span class="ident">choice</span></span>(<span>self, a, size=None, replace=True, p=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def choice(self, a, size=None, replace=True, p=None):
+    &#34;&#34;&#34;Returns an array of random values from a given 1-D array.
+
+    .. seealso::
+        - :func:`cupy.random.choice` for full documentation
+        - :meth:`numpy.random.choice`
+
+    &#34;&#34;&#34;
+    if a is None:
+        raise ValueError(&#39;a must be 1-dimensional or an integer&#39;)
+    if isinstance(a, cupy.ndarray) and a.ndim == 0:
+        raise NotImplementedError
+    if isinstance(a, int):
+        a_size = a
+        if a_size &lt; 0:
+            raise ValueError(&#39;a must be greater than or equal to 0&#39;)
+    else:
+        a = cupy.array(a, copy=False)
+        if a.ndim != 1:
+            raise ValueError(&#39;a must be 1-dimensional or an integer&#39;)
+        a_size = len(a)
+
+    #if p is not None:
+    #    p = cupy.array(p,copy=False)
+    #    if p.ndim != 1:
+    #        raise ValueError(&#39;p must be 1-dimensional&#39;)
+    #    if len(p) != a_size:
+    #        raise ValueError(&#39;a and p must have same size&#39;)
+    #    if not (p &gt;= 0).all():
+    #        raise ValueError(&#39;probabilities are not non-negative&#39;)
+        #p_sum = cupy.sum(p).get()
+        #if not numpy.allclose(p_sum, 1):
+        #    raise ValueError(&#39;probabilities do not sum to 1&#39;)
+
+    if size is None:
+        raise NotImplementedError(
+            &#39;choice() without specifying size is not supported yet&#39;)
+    shape = size
+    size = numpy.prod(shape)
+
+    if a_size == 0 and size &gt; 0:
+        raise ValueError(&#39;a cannot be empty unless no samples are taken&#39;)
+
+    if not replace and p is None:
+        if a_size &lt; size:
+            raise ValueError(
+                &#39;Cannot take a larger sample than population when &#39;
+                &#39;\&#39;replace=False\&#39;&#39;)
+        if isinstance(a, int):
+            indices = cupy.arange(a, dtype=&#39;l&#39;)
+        else:
+            indices = a.copy()
+        self.shuffle(indices)
+        return indices[:size].reshape(shape)
+
+    if not replace:
+        raise NotImplementedError
+
+    if p is not None:
+        p = cupy.broadcast_to(p, (size, a_size))
+        index = cupy.argmax(cupy.log(p) +
+                            self.gumbel(size=(size, a_size)),
+                            axis=1)
+        if not isinstance(shape, int):
+            index = cupy.reshape(index, shape)
+    else:
+        if a_size == 0:  # TODO: (#4511) Fix `randint` instead
+            a_size = 1
+        index = self.randint(0, a_size, size=shape)
+        # Align the dtype with NumPy
+        index = index.astype(cupy.int64, copy=False)
+
+    if isinstance(a, int):
+        return index
+
+    if index.ndim == 0:
+        return cupy.array(a[index], dtype=a.dtype)
+
+    return a[index]</code></pre>
+</details>
+<div class="desc"><p>Returns an array of random values from a given 1-D array.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.choice</code> for full documentation</li>
+<li>:meth:<code>numpy.random.choice</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.dirichlet"><code class="name flex">
+<span>def <span class="ident">dirichlet</span></span>(<span>self, alpha, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dirichlet(self, alpha, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the dirichlet distribution.
+
+    .. seealso::
+        - :func:`cupy.random.dirichlet` for full documentation
+        - :meth:`numpy.random.RandomState.dirichlet`
+    &#34;&#34;&#34;
+    alpha = cupy.asarray(alpha)
+    if size is None:
+        size = alpha.shape
+    elif isinstance(size, (int, cupy.integer)):
+        size = (size,) + alpha.shape
+    else:
+        size += alpha.shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.standard_gamma_kernel(alpha, self._rk_seed, y)
+    y /= y.sum(axis=-1, keepdims=True)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the dirichlet distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.dirichlet</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.dirichlet</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.exponential"><code class="name flex">
+<span>def <span class="ident">exponential</span></span>(<span>self, scale=1.0, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def exponential(self, scale=1.0, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from a exponential distribution.
+
+    .. warning::
+
+        This function may synchronize the device.
+
+    .. seealso::
+        - :func:`cupy.random.exponential` for full documentation
+        - :meth:`numpy.random.RandomState.exponential`
+    &#34;&#34;&#34;
+    scale = cupy.asarray(scale, dtype)
+    if (scale &lt; 0).any():  # synchronize!
+        raise ValueError(&#39;scale &lt; 0&#39;)
+    if size is None:
+        size = scale.shape
+    x = self.standard_exponential(size, dtype)
+    x *= scale
+    return x</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from a exponential distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function may synchronize the device.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.exponential</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.exponential</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.f"><code class="name flex">
+<span>def <span class="ident">f</span></span>(<span>self, dfnum, dfden, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def f(self, dfnum, dfden, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the f distribution.
+
+    .. seealso::
+        - :func:`cupy.random.f` for full documentation
+        - :meth:`numpy.random.RandomState.f`
+    &#34;&#34;&#34;
+    dfnum, dfden = cupy.asarray(dfnum), cupy.asarray(dfden)
+    if size is None:
+        size = cupy.broadcast(dfnum, dfden).shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.f_kernel(dfnum, dfden, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the f distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.f</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.f</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.gamma"><code class="name flex">
+<span>def <span class="ident">gamma</span></span>(<span>self, shape, scale=1.0, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def gamma(self, shape, scale=1.0, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from a gamma distribution.
+
+    .. seealso::
+        - :func:`cupy.random.gamma` for full documentation
+        - :meth:`numpy.random.RandomState.gamma`
+    &#34;&#34;&#34;
+    shape, scale = cupy.asarray(shape), cupy.asarray(scale)
+    if size is None:
+        size = cupy.broadcast(shape, scale).shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.standard_gamma_kernel(shape, self._rk_seed, y)
+    y *= scale
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from a gamma distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.gamma</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.gamma</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.geometric"><code class="name flex">
+<span>def <span class="ident">geometric</span></span>(<span>self, p, size=None, dtype=builtins.int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def geometric(self, p, size=None, dtype=int):
+    &#34;&#34;&#34;Returns an array of samples drawn from the geometric distribution.
+
+    .. seealso::
+        - :func:`cupy.random.geometric` for full documentation
+        - :meth:`numpy.random.RandomState.geometric`
+    &#34;&#34;&#34;
+    p = cupy.asarray(p)
+    if size is None:
+        size = p.shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.geometric_kernel(p, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the geometric distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.geometric</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.geometric</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.gumbel"><code class="name flex">
+<span>def <span class="ident">gumbel</span></span>(<span>self, loc=0.0, scale=1.0, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def gumbel(self, loc=0.0, scale=1.0, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from a Gumbel distribution.
+
+    .. seealso::
+        - :func:`cupy.random.gumbel` for full documentation
+        - :meth:`numpy.random.RandomState.gumbel`
+    &#34;&#34;&#34;
+    if not numpy.isscalar(loc):
+        loc = cupy.asarray(loc, dtype)
+    if not numpy.isscalar(scale):
+        scale = cupy.asarray(scale, dtype)
+    if size is None:
+        size = cupy.broadcast(loc, scale).shape
+    x = self._random_sample_raw(size=size, dtype=dtype)
+    RandomState._gumbel_kernel(x, loc, scale, x)
+    return x</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from a Gumbel distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.gumbel</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.gumbel</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.hypergeometric"><code class="name flex">
+<span>def <span class="ident">hypergeometric</span></span>(<span>self, ngood, nbad, nsample, size=None, dtype=builtins.int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hypergeometric(self, ngood, nbad, nsample, size=None, dtype=int):
+    &#34;&#34;&#34;Returns an array of samples drawn from the hypergeometric distribution.
+
+    .. seealso::
+        - :func:`cupy.random.hypergeometric` for full documentation
+        - :meth:`numpy.random.RandomState.hypergeometric`
+    &#34;&#34;&#34;
+    ngood, nbad, nsample = \
+        cupy.asarray(ngood), cupy.asarray(nbad), cupy.asarray(nsample)
+    if size is None:
+        size = cupy.broadcast(ngood, nbad, nsample).shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.hypergeometric_kernel(ngood, nbad, nsample, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the hypergeometric distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.hypergeometric</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.hypergeometric</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.laplace"><code class="name flex">
+<span>def <span class="ident">laplace</span></span>(<span>self, loc=0.0, scale=1.0, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def laplace(self, loc=0.0, scale=1.0, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the laplace distribution.
+
+    .. seealso::
+        - :func:`cupy.random.laplace` for full documentation
+        - :meth:`numpy.random.RandomState.laplace`
+    &#34;&#34;&#34;
+    loc = cupy.asarray(loc, dtype)
+    scale = cupy.asarray(scale, dtype)
+    if size is None:
+        size = cupy.broadcast(loc, scale).shape
+    x = self._random_sample_raw(size, dtype)
+    RandomState._laplace_kernel(x, loc, scale, x)
+    return x</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the laplace distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.laplace</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.laplace</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.logistic"><code class="name flex">
+<span>def <span class="ident">logistic</span></span>(<span>self, loc=0.0, scale=1.0, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def logistic(self, loc=0.0, scale=1.0, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the logistic distribution.
+
+    .. seealso::
+        - :func:`cupy.random.logistic` for full documentation
+        - :meth:`numpy.random.RandomState.logistic`
+    &#34;&#34;&#34;
+    loc, scale = cupy.asarray(loc), cupy.asarray(scale)
+    if size is None:
+        size = cupy.broadcast(loc, scale).shape
+    x = cupy.empty(shape=size, dtype=dtype)
+    _kernels.open_uniform_kernel(self._rk_seed, x)
+    self._update_seed(x.size)
+    x = (1.0 - x) / x
+    cupy.log(x, out=x)
+    cupy.multiply(x, scale, out=x)
+    cupy.add(x, loc, out=x)
+    return x</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the logistic distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.logistic</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.logistic</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.lognormal"><code class="name flex">
+<span>def <span class="ident">lognormal</span></span>(<span>self, mean=0.0, sigma=1.0, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def lognormal(self, mean=0.0, sigma=1.0, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from a log normal distribution.
+
+    .. seealso::
+        - :func:`cupy.random.lognormal` for full documentation
+        - :meth:`numpy.random.RandomState.lognormal`
+
+    &#34;&#34;&#34;
+    if any(isinstance(arg, cupy.ndarray) for arg in (mean, sigma)):
+        x = self.normal(mean, sigma, size, dtype)
+        cupy.exp(x, out=x)
+        return x
+    if size is None:
+        size = ()
+    dtype = _check_and_get_dtype(dtype)
+    if dtype.char == &#39;f&#39;:
+        func = curand.generateLogNormal
+    else:
+        func = curand.generateLogNormalDouble
+    return self._generate_normal(func, size, dtype, mean, sigma)</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from a log normal distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.lognormal</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.lognormal</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.logseries"><code class="name flex">
+<span>def <span class="ident">logseries</span></span>(<span>self, p, size=None, dtype=builtins.int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def logseries(self, p, size=None, dtype=int):
+    &#34;&#34;&#34;Returns an array of samples drawn from a log series distribution.
+
+    .. warning::
+
+        This function may synchronize the device.
+
+    .. seealso::
+        - :func:`cupy.random.logseries` for full documentation
+        - :meth:`numpy.random.RandomState.logseries`
+
+    &#34;&#34;&#34;
+    p = cupy.asarray(p)
+    if cupy.any(p &lt;= 0):  # synchronize!
+        raise ValueError(&#39;p &lt;= 0.0&#39;)
+    if cupy.any(p &gt;= 1):  # synchronize!
+        raise ValueError(&#39;p &gt;= 1.0&#39;)
+    if size is None:
+        size = p.shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.logseries_kernel(p, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from a log series distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function may synchronize the device.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.logseries</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.logseries</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.multivariate_normal"><code class="name flex">
+<span>def <span class="ident">multivariate_normal</span></span>(<span>self,<br>mean,<br>cov,<br>size=None,<br>check_valid='ignore',<br>tol=1e-08,<br>method='cholesky',<br>dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def multivariate_normal(self, mean, cov, size=None, check_valid=&#39;ignore&#39;,
+                        tol=1e-08, method=&#39;cholesky&#39;, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the multivariate normal
+    distribution.
+
+    .. warning::
+        This function calls one or more cuSOLVER routine(s) which may yield
+        invalid results if input conditions are not met.
+        To detect these invalid results, you can set the `linalg`
+        configuration to a value that is not `ignore` in
+        :func:`cupyx.errstate` or :func:`cupyx.seterr`.
+
+    .. seealso::
+        - :func:`cupy.random.multivariate_normal` for full documentation
+        - :meth:`numpy.random.RandomState.multivariate_normal`
+    &#34;&#34;&#34;
+    #_util.experimental(&#39;cupy.random.RandomState.multivariate_normal&#39;)
+    mean = cupy.asarray(mean, dtype=dtype)
+    cov = cupy.asarray(cov, dtype=dtype)
+    if size is None:
+        shape = []
+    elif isinstance(size, (int, cupy.integer)):
+        shape = [size]
+    else:
+        shape = size
+
+    if len(mean.shape) != 1:
+        raise ValueError(&#39;mean must be 1 dimensional&#39;)
+    if (len(cov.shape) != 2) or (cov.shape[0] != cov.shape[1]):
+        raise ValueError(&#39;cov must be 2 dimensional and square&#39;)
+    if mean.shape[0] != cov.shape[0]:
+        raise ValueError(&#39;mean and cov must have same length&#39;)
+
+    final_shape = list(shape[:])
+    final_shape.append(mean.shape[0])
+
+    if method not in {&#39;eigh&#39;, &#39;svd&#39;, &#39;cholesky&#39;}:
+        raise ValueError(
+            &#34;method must be one of {&#39;eigh&#39;, &#39;svd&#39;, &#39;cholesky&#39;}&#34;)
+
+    if check_valid != &#39;ignore&#39;:
+        if check_valid != &#39;warn&#39; and check_valid != &#39;raise&#39;:
+            raise ValueError(
+                &#34;check_valid must equal &#39;warn&#39;, &#39;raise&#39;, or &#39;ignore&#39;&#34;)
+
+    if check_valid == &#39;warn&#39;:
+        with cupyx.errstate(linalg=&#39;raise&#39;):
+            try:
+                decomp = cupy.linalg.cholesky(cov)
+            except LinAlgError:
+                with cupyx.errstate(linalg=&#39;ignore&#39;):
+                    if method != &#39;cholesky&#39;:
+                        if method == &#39;eigh&#39;:
+                            (s, u) = cupy.linalg.eigh(cov)
+                            psd = not cupy.any(s &lt; -tol)
+                        if method == &#39;svd&#39;:
+                            (u, s, vh) = cupy.linalg.svd(cov)
+                            psd = cupy.allclose(cupy.dot(vh.T * s, vh),
+                                                cov, rtol=tol, atol=tol)
+                        decomp = u * cupy.sqrt(cupy.abs(s))
+                        if not psd:
+                            warnings.warn(&#34;covariance is not positive-&#34; +
+                                          &#34;semidefinite, output may be &#34; +
+                                          &#34;invalid.&#34;, RuntimeWarning)
+
+                    else:
+                        warnings.warn(&#34;covariance is not positive-&#34; +
+                                      &#34;semidefinite, output *is* &#34; +
+                                      &#34;invalid.&#34;, RuntimeWarning)
+                        decomp = cupy.linalg.cholesky(cov)
+
+    else:
+        with cupyx.errstate(linalg=check_valid):
+            try:
+                if method == &#39;cholesky&#39;:
+                    decomp = cupy.linalg.cholesky(cov)
+                elif method == &#39;eigh&#39;:
+                    (s, u) = cupy.linalg.eigh(cov)
+                    decomp = u * cupy.sqrt(cupy.abs(s))
+                elif method == &#39;svd&#39;:
+                    (u, s, vh) = cupy.linalg.svd(cov)
+                    decomp = u * cupy.sqrt(cupy.abs(s))
+
+            except LinAlgError:
+                raise LinAlgError(&#34;Matrix is not positive definite; if &#34; +
+                                  &#34;matrix is positive-semidefinite, set&#34; +
+                                  &#34;&#39;check_valid&#39; to &#39;warn&#39;&#34;)
+
+    x = self.standard_normal(final_shape,
+                             dtype=dtype).reshape(-1, mean.shape[0])
+    x = cupy.dot(decomp, x.T)
+    x = x.T
+    x += mean
+    x.shape = tuple(final_shape)
+    return x</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the multivariate normal
+distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function calls one or more cuSOLVER routine(s) which may yield
+invalid results if input conditions are not met.
+To detect these invalid results, you can set the <code>linalg</code>
+configuration to a value that is not <code>ignore</code> in
+:func:<code>cupyx.errstate</code> or :func:<code>cupyx.seterr</code>.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.multivariate_normal</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.multivariate_normal</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.negative_binomial"><code class="name flex">
+<span>def <span class="ident">negative_binomial</span></span>(<span>self, n, p, size=None, dtype=builtins.int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def negative_binomial(self, n, p, size=None, dtype=int):
+    &#34;&#34;&#34;Returns an array of samples drawn from the negative binomial distribution.
+
+    .. warning::
+
+        This function may synchronize the device.
+
+    .. seealso::
+        - :func:`cupy.random.negative_binomial` for full documentation
+        - :meth:`numpy.random.RandomState.negative_binomial`
+    &#34;&#34;&#34;
+    n = cupy.asarray(n)
+    p = cupy.asarray(p)
+    if cupy.any(n &lt;= 0):  # synchronize!
+        raise ValueError(&#39;n &lt;= 0&#39;)
+    if cupy.any(p &lt; 0):  # synchronize!
+        raise ValueError(&#39;p &lt; 0&#39;)
+    if cupy.any(p &gt; 1):  # synchronize!
+        raise ValueError(&#39;p &gt; 1&#39;)
+    y = self.gamma(n, (1-p)/p, size)
+    return self.poisson(y, dtype=dtype)</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the negative binomial distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function may synchronize the device.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.negative_binomial</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.negative_binomial</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.noncentral_chisquare"><code class="name flex">
+<span>def <span class="ident">noncentral_chisquare</span></span>(<span>self, df, nonc, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def noncentral_chisquare(self, df, nonc, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the noncentral chi-square
+    distribution.
+
+    .. warning::
+
+        This function may synchronize the device.
+
+    .. seealso::
+        - :func:`cupy.random.noncentral_chisquare` for full documentation
+        - :meth:`numpy.random.RandomState.noncentral_chisquare`
+    &#34;&#34;&#34;
+    df, nonc = cupy.asarray(df), cupy.asarray(nonc)
+    if cupy.any(df &lt;= 0):  # synchronize!
+        raise ValueError(&#39;df &lt;= 0&#39;)
+    if cupy.any(nonc &lt; 0):  # synchronize!
+        raise ValueError(&#39;nonc &lt; 0&#39;)
+    if size is None:
+        size = cupy.broadcast(df, nonc).shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.noncentral_chisquare_kernel(df, nonc, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the noncentral chi-square
+distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function may synchronize the device.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.noncentral_chisquare</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.noncentral_chisquare</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.noncentral_f"><code class="name flex">
+<span>def <span class="ident">noncentral_f</span></span>(<span>self, dfnum, dfden, nonc, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def noncentral_f(self, dfnum, dfden, nonc, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the noncentral F distribution.
+
+    .. warning::
+
+        This function may synchronize the device.
+
+    .. seealso::
+        - :func:`cupy.random.noncentral_f` for full documentation
+        - :meth:`numpy.random.RandomState.noncentral_f`
+    &#34;&#34;&#34;
+    dfnum, dfden, nonc = \
+        cupy.asarray(dfnum), cupy.asarray(dfden), cupy.asarray(nonc)
+    if cupy.any(dfnum &lt;= 0):  # synchronize!
+        raise ValueError(&#39;dfnum &lt;= 0&#39;)
+    if cupy.any(dfden &lt;= 0):  # synchronize!
+        raise ValueError(&#39;dfden &lt;= 0&#39;)
+    if cupy.any(nonc &lt; 0):  # synchronize!
+        raise ValueError(&#39;nonc &lt; 0&#39;)
+    if size is None:
+        size = cupy.broadcast(dfnum, dfden, nonc).shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.noncentral_f_kernel(dfnum, dfden, nonc, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the noncentral F distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function may synchronize the device.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.noncentral_f</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.noncentral_f</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.normal"><code class="name flex">
+<span>def <span class="ident">normal</span></span>(<span>self, loc=0.0, scale=1.0, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def normal(self, loc=0.0, scale=1.0, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of normally distributed samples.
+
+    .. seealso::
+        - :func:`cupy.random.normal` for full documentation
+        - :meth:`numpy.random.RandomState.normal`
+
+    &#34;&#34;&#34;
+        
+    dtype = _check_and_get_dtype(dtype)
+    if size is None:
+        size = cupy.broadcast(loc, scale).shape
+    if dtype.char == &#39;f&#39;:
+        func = curand.generateNormal
+    else:
+        func = curand.generateNormalDouble
+    if isinstance(scale, cupy.ndarray):
+        x = self._generate_normal(func, size, dtype, 0.0, 1.0)
+        cupy.multiply(x, scale, out=x)
+        cupy.add(x, loc, out=x)
+    elif isinstance(loc, cupy.ndarray):
+        x = self._generate_normal(func, size, dtype, 0.0, scale)
+        cupy.add(x, loc, out=x)
+    else:
+        x = self._generate_normal(func, size, dtype, loc, scale)
+    return x</code></pre>
+</details>
+<div class="desc"><p>Returns an array of normally distributed samples.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.normal</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.normal</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.pareto"><code class="name flex">
+<span>def <span class="ident">pareto</span></span>(<span>self, a, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pareto(self, a, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the pareto II distribution.
+
+    .. seealso::
+        - :func:`cupy.random.pareto` for full documentation
+        - :meth:`numpy.random.RandomState.pareto`
+    &#34;&#34;&#34;
+    a = cupy.asarray(a)
+    if size is None:
+        size = a.shape
+    x = self._random_sample_raw(size, dtype)
+    cupy.log(x, out=x)
+    cupy.exp(-x/a, out=x)
+    return x - 1</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the pareto II distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.pareto</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.pareto</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.permutation"><code class="name flex">
+<span>def <span class="ident">permutation</span></span>(<span>self, a)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def permutation(self, a):
+    &#34;&#34;&#34;Returns a permuted range or a permutation of an array.&#34;&#34;&#34;
+    if isinstance(a, int):
+        return self._permutation(a)
+    else:
+        return a[self._permutation(len(a))]</code></pre>
+</details>
+<div class="desc"><p>Returns a permuted range or a permutation of an array.</p></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.poisson"><code class="name flex">
+<span>def <span class="ident">poisson</span></span>(<span>self, lam=1.0, size=None, dtype=builtins.int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def poisson(self, lam=1.0, size=None, dtype=int):
+    &#34;&#34;&#34;Returns an array of samples drawn from the poisson distribution.
+
+    .. seealso::
+        - :func:`cupy.random.poisson` for full documentation
+        - :meth:`numpy.random.RandomState.poisson`
+    &#34;&#34;&#34;
+    lam = cupy.asarray(lam)
+    if size is None:
+        size = lam.shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.poisson_kernel(lam, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the poisson distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.poisson</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.poisson</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.power"><code class="name flex">
+<span>def <span class="ident">power</span></span>(<span>self, a, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def power(self, a, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the power distribution.
+
+    .. warning::
+
+        This function may synchronize the device.
+
+    .. seealso::
+        - :func:`cupy.random.power` for full documentation
+        - :meth:`numpy.random.RandomState.power`
+    &#34;&#34;&#34;
+    a = cupy.asarray(a)
+    if cupy.any(a &lt; 0):  # synchronize!
+        raise ValueError(&#39;a &lt; 0&#39;)
+    if size is None:
+        size = a.shape
+    x = self.standard_exponential(size=size, dtype=dtype)
+    cupy.exp(-x, out=x)
+    cupy.add(1, -x, out=x)
+    cupy.power(x, 1./a, out=x)
+    return x</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the power distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function may synchronize the device.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.power</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.power</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.rand"><code class="name flex">
+<span>def <span class="ident">rand</span></span>(<span>self, *size, **kwarg)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def rand(self, *size, **kwarg):
+    &#34;&#34;&#34;Returns uniform random values over the interval ``[0, 1)``.
+
+    .. seealso::
+        - :func:`cupy.random.rand` for full documentation
+        - :meth:`numpy.random.RandomState.rand`
+
+    &#34;&#34;&#34;
+    dtype = kwarg.pop(&#39;dtype&#39;, float)
+    if kwarg:
+        raise TypeError(&#39;rand() got unexpected keyword arguments %s&#39;
+                        % &#39;, &#39;.join(kwarg.keys()))
+    return self.random_sample(size=size, dtype=dtype)</code></pre>
+</details>
+<div class="desc"><p>Returns uniform random values over the interval <code>[0, 1)</code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.rand</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.rand</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.randint"><code class="name flex">
+<span>def <span class="ident">randint</span></span>(<span>self, low, high=None, size=None, dtype=builtins.int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def randint(self, low, high=None, size=None, dtype=int):
+    &#34;&#34;&#34;Returns a scalar or an array of integer values over ``[low, high)``.
+
+    .. seealso::
+        - :func:`cupy.random.randint` for full documentation
+        - :meth:`numpy.random.RandomState.randint`
+    &#34;&#34;&#34;
+    if high is None:
+        lo = 0
+        hi1 = int(low) - 1
+    else:
+        lo = int(low)
+        hi1 = int(high) - 1
+
+    if lo &gt; hi1:
+        raise ValueError(&#39;low &gt;= high&#39;)
+    if lo &lt; cupy.iinfo(dtype).min:
+        raise ValueError(
+            &#39;low is out of bounds for {}&#39;.format(cupy.dtype(dtype).name))
+    if hi1 &gt; cupy.iinfo(dtype).max:
+        raise ValueError(
+            &#39;high is out of bounds for {}&#39;.format(cupy.dtype(dtype).name))
+
+    diff = hi1 - lo
+    x = self._interval(diff, size).astype(dtype, copy=False)
+    cupy.add(x, lo, out=x)
+    return x</code></pre>
+</details>
+<div class="desc"><p>Returns a scalar or an array of integer values over <code>[low, high)</code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.randint</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.randint</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.randn"><code class="name flex">
+<span>def <span class="ident">randn</span></span>(<span>self, *size, **kwarg)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def randn(self, *size, **kwarg):
+    &#34;&#34;&#34;Returns an array of standard normal random values.
+
+    .. seealso::
+        - :func:`cupy.random.randn` for full documentation
+        - :meth:`numpy.random.RandomState.randn`
+
+    &#34;&#34;&#34;
+    dtype = kwarg.pop(&#39;dtype&#39;, float)
+    if kwarg:
+        raise TypeError(&#39;randn() got unexpected keyword arguments %s&#39;
+                        % &#39;, &#39;.join(kwarg.keys()))
+    return self.normal(size=size, dtype=dtype)</code></pre>
+</details>
+<div class="desc"><p>Returns an array of standard normal random values.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.randn</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.randn</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.random_sample"><code class="name flex">
+<span>def <span class="ident">random_sample</span></span>(<span>self, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def random_sample(self, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of random values over the interval ``[0, 1)``.
+
+    .. seealso::
+        - :func:`cupy.random.random_sample` for full documentation
+        - :meth:`numpy.random.RandomState.random_sample`
+
+    &#34;&#34;&#34;
+    if size is None:
+        size = ()
+    out = self._random_sample_raw(size, dtype)
+    RandomState._mod1_kernel(out)
+    return out</code></pre>
+</details>
+<div class="desc"><p>Returns an array of random values over the interval <code>[0, 1)</code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.random_sample</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.random_sample</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.rayleigh"><code class="name flex">
+<span>def <span class="ident">rayleigh</span></span>(<span>self, scale=1.0, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def rayleigh(self, scale=1.0, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from a rayleigh distribution.
+
+    .. warning::
+
+        This function may synchronize the device.
+
+    .. seealso::
+        - :func:`cupy.random.rayleigh` for full documentation
+        - :meth:`numpy.random.RandomState.rayleigh`
+    &#34;&#34;&#34;
+    scale = cupy.asarray(scale)
+    if size is None:
+        size = scale.shape
+    if cupy.any(scale &lt; 0):  # synchronize!
+        raise ValueError(&#39;scale &lt; 0&#39;)
+    x = self._random_sample_raw(size, dtype)
+    x = cupy.log(x, out=x)
+    x = cupy.multiply(x, -2., out=x)
+    x = cupy.sqrt(x, out=x)
+    x = cupy.multiply(x, scale, out=x)
+    return x</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from a rayleigh distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function may synchronize the device.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.rayleigh</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.rayleigh</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.seed"><code class="name flex">
+<span>def <span class="ident">seed</span></span>(<span>self, seed=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def seed(self, seed=None):
+    &#34;&#34;&#34;Resets the state of the random number generator with a seed.
+
+    .. seealso::
+        - :func:`cupy.random.seed` for full documentation
+        - :meth:`numpy.random.RandomState.seed`
+
+    &#34;&#34;&#34;
+    if seed is None:
+        try:
+            seed_str = binascii.hexlify(os.urandom(8))
+            seed = int(seed_str, 16)
+        except NotImplementedError:
+            seed = (time.time() * 1000000) % _UINT64_MAX
+    else:
+        if isinstance(seed, numpy.ndarray):
+            seed = int(hashlib.md5(seed).hexdigest()[:16], 16)
+        else:
+            seed = int(
+                numpy.asarray(seed).astype(numpy.uint64, casting=&#39;safe&#39;))
+
+    curand.setPseudoRandomGeneratorSeed(self._generator, seed)
+    if (self.method not in (curand.CURAND_RNG_PSEUDO_MT19937,
+                            curand.CURAND_RNG_PSEUDO_MTGP32)):
+        curand.setGeneratorOffset(self._generator, 0)
+
+    self._rk_seed = seed</code></pre>
+</details>
+<div class="desc"><p>Resets the state of the random number generator with a seed.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.seed</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.seed</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.shuffle"><code class="name flex">
+<span>def <span class="ident">shuffle</span></span>(<span>self, a)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def shuffle(self, a):
+    &#34;&#34;&#34;Returns a shuffled array.
+
+    .. seealso::
+        - :func:`cupy.random.shuffle` for full documentation
+        - :meth:`numpy.random.shuffle`
+
+    &#34;&#34;&#34;
+    if not isinstance(a, cupy.ndarray):
+        raise TypeError(&#39;The array must be cupy.ndarray&#39;)
+
+    if a.ndim == 0:
+        raise TypeError(&#39;An array whose ndim is 0 is not supported&#39;)
+
+    a[:] = a[self._permutation(len(a))]</code></pre>
+</details>
+<div class="desc"><p>Returns a shuffled array.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.shuffle</code> for full documentation</li>
+<li>:meth:<code>numpy.random.shuffle</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.standard_cauchy"><code class="name flex">
+<span>def <span class="ident">standard_cauchy</span></span>(<span>self, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def standard_cauchy(self, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the standard cauchy distribution.
+
+    .. seealso::
+        - :func:`cupy.random.standard_cauchy` for full documentation
+        - :meth:`numpy.random.RandomState.standard_cauchy`
+    &#34;&#34;&#34;
+    x = self.uniform(size=size, dtype=dtype)
+    return cupy.tan(cupy.pi * (x - 0.5))</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the standard cauchy distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.standard_cauchy</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.standard_cauchy</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.standard_exponential"><code class="name flex">
+<span>def <span class="ident">standard_exponential</span></span>(<span>self, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def standard_exponential(self, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the standard exp distribution.
+
+     .. seealso::
+        - :func:`cupy.random.standard_exponential` for full documentation
+        - :meth:`numpy.random.RandomState.standard_exponential`
+    &#34;&#34;&#34;
+    if size is None:
+        size = ()
+    x = self._random_sample_raw(size, dtype)
+    return -cupy.log(x, out=x)</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the standard exp distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.standard_exponential</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.standard_exponential</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.standard_gamma"><code class="name flex">
+<span>def <span class="ident">standard_gamma</span></span>(<span>self, shape, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def standard_gamma(self, shape, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from a standard gamma distribution.
+
+    .. seealso::
+        - :func:`cupy.random.standard_gamma` for full documentation
+        - :meth:`numpy.random.RandomState.standard_gamma`
+    &#34;&#34;&#34;
+    shape = cupy.asarray(shape)
+    if size is None:
+        size = shape.shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.standard_gamma_kernel(shape, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from a standard gamma distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.standard_gamma</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.standard_gamma</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.standard_normal"><code class="name flex">
+<span>def <span class="ident">standard_normal</span></span>(<span>self, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def standard_normal(self, size=None, dtype=float):
+    &#34;&#34;&#34;Returns samples drawn from the standard normal distribution.
+
+    .. seealso::
+        - :func:`cupy.random.standard_normal` for full documentation
+        - :meth:`numpy.random.RandomState.standard_normal`
+
+    &#34;&#34;&#34;
+    return self.normal(size=size, dtype=dtype)</code></pre>
+</details>
+<div class="desc"><p>Returns samples drawn from the standard normal distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.standard_normal</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.standard_normal</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.standard_t"><code class="name flex">
+<span>def <span class="ident">standard_t</span></span>(<span>self, df, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def standard_t(self, df, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the standard t distribution.
+
+    .. seealso::
+        - :func:`cupy.random.standard_t` for full documentation
+        - :meth:`numpy.random.RandomState.standard_t`
+    &#34;&#34;&#34;
+    df = cupy.asarray(df)
+    if size is None:
+        size = df.shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.standard_t_kernel(df, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the standard t distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.standard_t</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.standard_t</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.tomaxint"><code class="name flex">
+<span>def <span class="ident">tomaxint</span></span>(<span>self, size=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tomaxint(self, size=None):
+    &#34;&#34;&#34;Draws integers between 0 and max integer inclusive.
+
+    Return a sample of uniformly distributed random integers in the
+    interval [0, ``np.iinfo(np.int_).max``]. The `np.int_` type translates
+    to the C long integer type and its precision is platform dependent.
+
+    Args:
+        size (int or tuple of ints): Output shape.
+
+    Returns:
+        cupy.ndarray: Drawn samples.
+
+    .. seealso::
+        :meth:`numpy.random.RandomState.tomaxint`
+
+    &#34;&#34;&#34;
+    if size is None:
+        size = ()
+    sample = cupy.empty(size, dtype=cupy.int_)
+    # cupy.random only uses int32 random generator
+    size_in_int = sample.dtype.itemsize // 4
+    curand.generate(
+        self._generator, sample.data.ptr, sample.size * size_in_int)
+
+    # Disable sign bit
+    sample &amp;= cupy.iinfo(cupy.int_).max
+    return sample</code></pre>
+</details>
+<div class="desc"><p>Draws integers between 0 and max integer inclusive.</p>
+<p>Return a sample of uniformly distributed random integers in the
+interval [0, <code>np.iinfo(np.int_).max</code>]. The <code>np.int_</code> type translates
+to the C long integer type and its precision is platform dependent.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>size</code></strong> :&ensp;<code>int</code> or <code>tuple</code> of <code>ints</code></dt>
+<dd>Output shape.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>cupy.ndarray</code></dt>
+<dd>Drawn samples.</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<p>:meth:<code>numpy.random.RandomState.tomaxint</code></p>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.triangular"><code class="name flex">
+<span>def <span class="ident">triangular</span></span>(<span>self, left, mode, right, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def triangular(self, left, mode, right, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the triangular distribution.
+
+    .. warning::
+
+        This function may synchronize the device.
+
+    .. seealso::
+        - :func:`cupy.random.triangular` for full documentation
+        - :meth:`numpy.random.RandomState.triangular`
+    &#34;&#34;&#34;
+    left, mode, right = \
+        cupy.asarray(left), cupy.asarray(mode), cupy.asarray(right)
+    if cupy.any(left &gt; mode):  # synchronize!
+        raise ValueError(&#39;left &gt; mode&#39;)
+    if cupy.any(mode &gt; right):  # synchronize!
+        raise ValueError(&#39;mode &gt; right&#39;)
+    if cupy.any(left == right):  # synchronize!
+        raise ValueError(&#39;left == right&#39;)
+    if size is None:
+        size = cupy.broadcast(left, mode, right).shape
+    x = self.random_sample(size=size, dtype=dtype)
+    return RandomState._triangular_kernel(left, mode, right, x)</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the triangular distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function may synchronize the device.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.triangular</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.triangular</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.uniform"><code class="name flex">
+<span>def <span class="ident">uniform</span></span>(<span>self, low=0.0, high=1.0, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def uniform(self, low=0.0, high=1.0, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of uniformly-distributed samples over an interval.
+
+    .. seealso::
+        - :func:`cupy.random.uniform` for full documentation
+        - :meth:`numpy.random.RandomState.uniform`
+
+    &#34;&#34;&#34;
+    dtype = numpy.dtype(dtype)
+    rand = self.random_sample(size=size, dtype=dtype)
+    if not numpy.isscalar(low):
+        low = cupy.asarray(low, dtype)
+    if not numpy.isscalar(high):
+        high = cupy.asarray(high, dtype)
+    return RandomState._scale_kernel(low, high, rand)</code></pre>
+</details>
+<div class="desc"><p>Returns an array of uniformly-distributed samples over an interval.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.uniform</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.uniform</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.vonmises"><code class="name flex">
+<span>def <span class="ident">vonmises</span></span>(<span>self, mu, kappa, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def vonmises(self, mu, kappa, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the von Mises distribution.
+
+    .. seealso::
+        - :func:`cupy.random.vonmises` for full documentation
+        - :meth:`numpy.random.RandomState.vonmises`
+    &#34;&#34;&#34;
+    mu, kappa = cupy.asarray(mu), cupy.asarray(kappa)
+    if size is None:
+        size = cupy.broadcast(mu, kappa).shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.vonmises_kernel(mu, kappa, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the von Mises distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.vonmises</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.vonmises</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.wald"><code class="name flex">
+<span>def <span class="ident">wald</span></span>(<span>self, mean, scale, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wald(self, mean, scale, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the Wald distribution.
+
+     .. seealso::
+        - :func:`cupy.random.wald` for full documentation
+        - :meth:`numpy.random.RandomState.wald`
+    &#34;&#34;&#34;
+    mean, scale = \
+        cupy.asarray(mean, dtype=dtype), cupy.asarray(scale, dtype=dtype)
+    if size is None:
+        size = cupy.broadcast(mean, scale).shape
+    x = self.normal(size=size, dtype=dtype)
+    u = self.random_sample(size=size, dtype=dtype)
+    return RandomState._wald_kernel(mean, scale, u, x)</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the Wald distribution.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.wald</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.wald</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.weibull"><code class="name flex">
+<span>def <span class="ident">weibull</span></span>(<span>self, a, size=None, dtype=builtins.float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def weibull(self, a, size=None, dtype=float):
+    &#34;&#34;&#34;Returns an array of samples drawn from the weibull distribution.
+
+    .. warning::
+
+        This function may synchronize the device.
+
+    .. seealso::
+        - :func:`cupy.random.weibull` for full documentation
+        - :meth:`numpy.random.RandomState.weibull`
+    &#34;&#34;&#34;
+    a = cupy.asarray(a)
+    if cupy.any(a &lt; 0):  # synchronize!
+        raise ValueError(&#39;a &lt; 0&#39;)
+
+    if size is None:
+        size = a.shape
+
+    x = self.standard_exponential(size, dtype)
+    cupy.power(x, 1./a, out=x)
+    return x</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the weibull distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function may synchronize the device.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.weibull</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.weibull</code></li>
+</ul>
+</div></div>
+</dd>
+<dt id="gbayesdesign.rndgenerator.RandomState.zipf"><code class="name flex">
+<span>def <span class="ident">zipf</span></span>(<span>self, a, size=None, dtype=builtins.int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def zipf(self, a, size=None, dtype=int):
+    &#34;&#34;&#34;Returns an array of samples drawn from the Zipf distribution.
+
+    .. warning::
+
+        This function may synchronize the device.
+
+    .. seealso::
+        - :func:`cupy.random.zipf` for full documentation
+        - :meth:`numpy.random.RandomState.zipf`
+    &#34;&#34;&#34;
+    a = cupy.asarray(a)
+    if cupy.any(a &lt;= 1.0):  # synchronize!
+        raise ValueError(&#39;\&#39;a\&#39; must be a valid float &gt; 1.0&#39;)
+    if size is None:
+        size = a.shape
+    y = cupy.empty(shape=size, dtype=dtype)
+    _kernels.zipf_kernel(a, self._rk_seed, y)
+    self._update_seed(y.size)
+    return y</code></pre>
+</details>
+<div class="desc"><p>Returns an array of samples drawn from the Zipf distribution.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function may synchronize the device.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Seealso</p>
+<ul>
+<li>:func:<code>cupy.random.zipf</code> for full documentation</li>
+<li>:meth:<code>numpy.random.RandomState.zipf</code></li>
+</ul>
+</div></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="gbayesdesign" href="index.html">gbayesdesign</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="gbayesdesign.rndgenerator.get_random_state" href="#gbayesdesign.rndgenerator.get_random_state">get_random_state</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.reset_random_state" href="#gbayesdesign.rndgenerator.reset_random_state">reset_random_state</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.reset_states" href="#gbayesdesign.rndgenerator.reset_states">reset_states</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.seed" href="#gbayesdesign.rndgenerator.seed">seed</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.set_random_state" href="#gbayesdesign.rndgenerator.set_random_state">set_random_state</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="gbayesdesign.rndgenerator.RandomState" href="#gbayesdesign.rndgenerator.RandomState">RandomState</a></code></h4>
+<ul class="">
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.beta" href="#gbayesdesign.rndgenerator.RandomState.beta">beta</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.binomial" href="#gbayesdesign.rndgenerator.RandomState.binomial">binomial</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.chisquare" href="#gbayesdesign.rndgenerator.RandomState.chisquare">chisquare</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.choice" href="#gbayesdesign.rndgenerator.RandomState.choice">choice</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.dirichlet" href="#gbayesdesign.rndgenerator.RandomState.dirichlet">dirichlet</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.exponential" href="#gbayesdesign.rndgenerator.RandomState.exponential">exponential</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.f" href="#gbayesdesign.rndgenerator.RandomState.f">f</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.gamma" href="#gbayesdesign.rndgenerator.RandomState.gamma">gamma</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.geometric" href="#gbayesdesign.rndgenerator.RandomState.geometric">geometric</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.gumbel" href="#gbayesdesign.rndgenerator.RandomState.gumbel">gumbel</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.hypergeometric" href="#gbayesdesign.rndgenerator.RandomState.hypergeometric">hypergeometric</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.laplace" href="#gbayesdesign.rndgenerator.RandomState.laplace">laplace</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.logistic" href="#gbayesdesign.rndgenerator.RandomState.logistic">logistic</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.lognormal" href="#gbayesdesign.rndgenerator.RandomState.lognormal">lognormal</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.logseries" href="#gbayesdesign.rndgenerator.RandomState.logseries">logseries</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.multivariate_normal" href="#gbayesdesign.rndgenerator.RandomState.multivariate_normal">multivariate_normal</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.negative_binomial" href="#gbayesdesign.rndgenerator.RandomState.negative_binomial">negative_binomial</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.noncentral_chisquare" href="#gbayesdesign.rndgenerator.RandomState.noncentral_chisquare">noncentral_chisquare</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.noncentral_f" href="#gbayesdesign.rndgenerator.RandomState.noncentral_f">noncentral_f</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.normal" href="#gbayesdesign.rndgenerator.RandomState.normal">normal</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.pareto" href="#gbayesdesign.rndgenerator.RandomState.pareto">pareto</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.permutation" href="#gbayesdesign.rndgenerator.RandomState.permutation">permutation</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.poisson" href="#gbayesdesign.rndgenerator.RandomState.poisson">poisson</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.power" href="#gbayesdesign.rndgenerator.RandomState.power">power</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.rand" href="#gbayesdesign.rndgenerator.RandomState.rand">rand</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.randint" href="#gbayesdesign.rndgenerator.RandomState.randint">randint</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.randn" href="#gbayesdesign.rndgenerator.RandomState.randn">randn</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.random_sample" href="#gbayesdesign.rndgenerator.RandomState.random_sample">random_sample</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.rayleigh" href="#gbayesdesign.rndgenerator.RandomState.rayleigh">rayleigh</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.seed" href="#gbayesdesign.rndgenerator.RandomState.seed">seed</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.shuffle" href="#gbayesdesign.rndgenerator.RandomState.shuffle">shuffle</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.standard_cauchy" href="#gbayesdesign.rndgenerator.RandomState.standard_cauchy">standard_cauchy</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.standard_exponential" href="#gbayesdesign.rndgenerator.RandomState.standard_exponential">standard_exponential</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.standard_gamma" href="#gbayesdesign.rndgenerator.RandomState.standard_gamma">standard_gamma</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.standard_normal" href="#gbayesdesign.rndgenerator.RandomState.standard_normal">standard_normal</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.standard_t" href="#gbayesdesign.rndgenerator.RandomState.standard_t">standard_t</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.tomaxint" href="#gbayesdesign.rndgenerator.RandomState.tomaxint">tomaxint</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.triangular" href="#gbayesdesign.rndgenerator.RandomState.triangular">triangular</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.uniform" href="#gbayesdesign.rndgenerator.RandomState.uniform">uniform</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.vonmises" href="#gbayesdesign.rndgenerator.RandomState.vonmises">vonmises</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.wald" href="#gbayesdesign.rndgenerator.RandomState.wald">wald</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.weibull" href="#gbayesdesign.rndgenerator.RandomState.weibull">weibull</a></code></li>
+<li><code><a title="gbayesdesign.rndgenerator.RandomState.zipf" href="#gbayesdesign.rndgenerator.RandomState.zipf">zipf</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

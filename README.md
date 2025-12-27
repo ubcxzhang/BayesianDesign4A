@@ -64,7 +64,7 @@ gbayesdesign/
 │
 ├── tests/
 │ ├── test_BayeSSampler.py/ # Test file for BayesSampeler class module
-│ └── test_mvn.py # Test file for mvn classmodule
+│ └── test_mvn.py # Test file for mvn class module
 │
 ├── pyproject.toml # Build system configuration
 ├── setup.cfg # Package metadata and dependencies

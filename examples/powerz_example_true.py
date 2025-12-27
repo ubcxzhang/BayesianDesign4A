@@ -28,7 +28,6 @@ def xtPermutator(values):
     counter = 0
     for i in range(VLENGTH):
         for j in range(VLENGTH):
-            # print(values[i],values[j],values[i]<=values[j])
             if (values[i] <= values[j]):
                 xtSet_array[counter] = np.array([values[i],values[j]])
                 counter += 1
@@ -122,7 +121,6 @@ if '__main__':
         r = inputTable.at[index, 'r']
         Is = inputTable.at[index, 'Is']
         p_1 = inputTable.at[index, 'p_1']
-        # diff = inputTable.at[index, 'diff']
         x1 = inputTable.at[index, 'X1_t']
         x1_orig = inputTable.at[index, 'X1_t_orig'] if 'X1_t_orig' in inputTable.columns else np.nan
         x2 = inputTable.at[index, 'X2_t']
@@ -141,10 +139,8 @@ if '__main__':
             d, d_t = dcof*(1-r), np.nan
         #delta_dict = {'none': 0.25, 'weak': 0.15, 'strong': 0.2}
         #delta = delta_dict[EFFECT]
-
         # d = dcof*(1-r)
-
-
+        
         Sigma1_coeff = inputTable.at[index, 'Sigma1_coeff']
         Sigma1_coeff_k = inputTable.at[index, 'Sigma1_coeff_k'] if 'Sigma1_coeff_k' in inputTable.columns else np.nan
         
